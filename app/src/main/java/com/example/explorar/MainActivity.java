@@ -1,10 +1,13 @@
 package com.example.explorar;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,7 +25,7 @@ import com.google.ar.sceneform.ux.TransformableNode;
 
 public class MainActivity extends AppCompatActivity {
     private ArFragment arFragment;
-    private ModelRenderable modelRenderable;
+    //private ModelRenderable modelRenderable;
     private ActivityMainBinding binding;
 
     @Override
@@ -33,8 +36,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
-        setUpModel();
-        setUpPlane();
+        arFragment.setOnTapArPlaneListener(((hitResult, plane, motionEvent) -> {
+            Anchor anchor = hitResult.createAnchor();
+
+            ModelRenderable.builder().setSource(this, R.raw.wolves).build()
+                    .thenAccept(modelRenderable -> {
+                addModelToScene(anchor, modelRenderable);
+            }).exceptionally(throwable -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(throwable.getMessage()).show();
+                return null;
+            });
+        }));
+//        setUpModel();
+//        setUpPlane();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -47,7 +62,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    private void setUpModel() {
+    private void addModelToScene(Anchor anchor, ModelRenderable modelRenderable) {
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
+        transformableNode.setParent(anchorNode);
+        transformableNode.setRenderable(modelRenderable);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
+        transformableNode.select();
+    }
+
+    /*private void setUpModel() {
         ModelRenderable.builder()
                 .setSource(this, R.raw.wolves)
                 .build()
@@ -76,5 +100,5 @@ public class MainActivity extends AppCompatActivity {
         node.setRenderable(modelRenderable);
         node.select();
 
-    }
+    }*/
 }
