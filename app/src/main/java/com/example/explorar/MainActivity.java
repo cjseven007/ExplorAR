@@ -25,7 +25,6 @@ import com.google.ar.sceneform.ux.TransformableNode;
 
 public class MainActivity extends AppCompatActivity {
     private ArFragment arFragment;
-    //private ModelRenderable modelRenderable;
     private ActivityMainBinding binding;
 
     @Override

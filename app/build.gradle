@@ -48,19 +48,3 @@ dependencies {
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'
-
-
-sceneform.asset('sampledata/wolves.obj',
-        'default',
-        'sampledata/wolves.sfa',
-        'src/main/res/raw/wolves')
-
-sceneform.asset('sampledata/rp_sophia_animated_003_idling.FBX',
-        'default',
-        'sampledata/rp_sophia_animated_003_idling.sfa',
-        'src/main/res/raw/rp_sophia_animated_003_idling')
-
-sceneform.asset('sampledata/rp_nathan_animated_003_walking.fbx',
-        'default',
-        'sampledata/rp_nathan_animated_003_walking.sfa',
-        'src/main/res/raw/rp_nathan_animated_003_walking')
