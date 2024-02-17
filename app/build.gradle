@@ -56,3 +56,8 @@ sceneform.asset('sampledata/models/andy.obj', // 'Source Asset Path' specified d
         'default',                    // 'Material Path' specified during import.
         'sampledata/models/andy.sfa', // '.sfa Output Path' specified during import.
         'src/main/res/raw/andy')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/oil_pump/Oil_pump.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/oil_pump/Oil_pump.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/oil_pump')      // '.sfb Output Path' specified during import.

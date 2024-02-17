@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load the glb model asynchronously to optimize startup performance
         ModelRenderable.builder()
-                .setSource(arSceneView.getContext(), R.raw.andy)
+                .setSource(arSceneView.getContext(), R.raw.oil_pump)
                 .build()
                 .thenAccept(modelRenderable -> {
                     // Create a Node to attach the model to
