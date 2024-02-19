@@ -61,3 +61,14 @@ sceneform.asset('sampledata/oil_pump/Oil_pump.obj', // 'Source Asset Path' speci
         'default',                    // 'Material Path' specified during import.
         'sampledata/oil_pump/Oil_pump.sfa', // '.sfa Output Path' specified during import.
         'src/main/res/raw/oil_pump')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/arduino_1/model.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/arduino_1/model.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/arduino_1')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/circuit_board_1/model.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/circuit_board_1/model.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/circuit_board_1')      // '.sfb Output Path' specified during import.
+
