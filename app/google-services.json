@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "688362427020",
+    "project_id": "explorar-utp",
+    "storage_bucket": "explorar-utp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688362427020:android:5f8cff36992aa34bb1a1a9",
+        "android_client_info": {
+          "package_name": "com.example.explorar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ikhyheq9zlVu237ODyqBDk3gmQgEp5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
