@@ -49,16 +49,13 @@ private FragmentNotificationsBinding binding;
                                     "Logout failed",
                                     Toast.LENGTH_LONG)
                             .show();
-                    Intent intent = new Intent(getContext(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(getContext(),
                                     "Logout successful",
                                     Toast.LENGTH_LONG)
                             .show();
                     Intent intent = new Intent(getContext(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             }
