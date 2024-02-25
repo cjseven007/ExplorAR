@@ -5,7 +5,6 @@
     xmlns:tools="http:// schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".ui.login.RegisterActivity">
@@ -14,11 +13,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_marginBottom="20px"
-        android:textColor="@color/black"
         android:text="Register" />
+
+    <!-- ProgressBar for Loading Time -->
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingHorizontal="20dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:visibility="gone" />
 
     <!-- Edit text for email -->
     <EditText
@@ -53,12 +64,6 @@
         android:layout_gravity="end"
         android:text="Login to your account"
         android:textColor="@color/teal_200"
+        android:textSize="15dp"
         />
-
-    <!-- ProgressBar for loading time -->
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
 </LinearLayout>
