@@ -13,14 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.explorar.MainActivity;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentNotificationsBinding;
 import com.example.explorar.ui.login.LoginActivity;
-import com.example.explorar.ui.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,7 +49,7 @@ private FragmentNotificationsBinding binding;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firestore.collection("courses").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                firestore.collection("com/example/explorar/ui/courses").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {

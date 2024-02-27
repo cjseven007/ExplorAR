@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.example.explorar.MainActivity;
 import com.example.explorar.R;
 import com.example.explorar.ui.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,17 +29,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // on below line we are
-                // creating a new intent
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-
-                // on below line we are
-                // starting a new activity.
-                startActivity(intent);
-
-                // on the below line we are finishing
-                // our current activity.
-                finish();
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                if (firebaseAuth.getCurrentUser() != null) {
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 2500);
     }
