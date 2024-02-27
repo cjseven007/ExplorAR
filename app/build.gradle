@@ -59,7 +59,7 @@ dependencies {
     
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-
+    
     // Dependency to insert GIF into SplashScreen
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
 }

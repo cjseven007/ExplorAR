@@ -17,5 +17,4 @@
         android:adjustViewBounds="false"
         android:src="@drawable/explorar_splash" />
 
-
 </RelativeLayout>
