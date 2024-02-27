@@ -49,32 +49,6 @@ public class ARActivity extends AppCompatActivity {
         // Set clear background color for better scene visibility
         arSceneView.setBackgroundColor(Color.TRANSPARENT);
 
-        /*arSceneView.getScene().addOnUpdateListener(new Scene.OnUpdateListener() {
-            @Override
-            public void onUpdate(FrameTime frameTime) {
-                // Calculate screen center in world space
-                Display display = getWindowManager().getDefaultDisplay();
-                Point screenSize = new Point();
-                display.getSize(screenSize);
-                float centerX = screenSize.x / 2f;
-                float centerY = screenSize.y / 2f;
-                float[] translation = {centerX, centerY, 0};
-                float[] rotation = {0, 0, 0, 0};
-                Pose centerPose = new Pose(translation, rotation);
-
-                // Create or update anchor
-//                            if (centerAnchor == null) {
-//                                centerAnchor = arSceneView.getSession().createAnchor(centerPose);
-//                                arSceneView.getScene().addAnchor(centerAnchor);
-//                            } else {
-//                                centerAnchor.setPose(centerPose); // Update anchor position
-//                            }
-                centerAnchor = arSceneView.getSession().createAnchor(centerPose);
-
-                // Attach model node to anchor
-                //modelNode.setParent(centerAnchor);
-            }
-        });*/
         setUpModel();
         setUpPlane();
 
@@ -87,25 +61,9 @@ public class ARActivity extends AppCompatActivity {
                     Node modelNode = new Node();
                     modelNode.setRenderable(modelRenderable);
 
-                    // Calculate screen center in world space
-//                    DisplayMetrics metrics = new DisplayMetrics();
-//                    getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//                    float centerX = metrics.widthPixels / 2f;
-//                    float centerY = metrics.heightPixels / 2f;
-//                    float[] translation = {centerX, centerY, 0};
-//                    float[] rotation = {0, 0, 0, 0};
-//                    Pose centerPose = new Pose(translation, rotation);
-//                    Vector3 tran = arSceneView.getScene().getCamera().getWorldPosition();
-//                    Quaternion qua = arSceneView.getScene().getCamera().getWorldRotation();
-//                    translation = new float[]{tran.x, tran.y, tran.z};
-//                    rotation = new float[]{qua.x, qua.y, qua.z, qua.w};
-//                    Pose n = new Pose(translation, rotation);
-//                    centerAnchor = arSceneView.getSession().createAnchor(n);
-//
                     AnchorNode anchorNode = new AnchorNode(centerAnchor);
                     anchorNode.setParent(arFragment.getArSceneView().getScene());
                     TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
-//                    transformableNode.setLocalScale(new Vector3(0.05f,0.05f,0.05f));
                     transformableNode.getScaleController().setMaxScale(1f);
                     transformableNode.getScaleController().setMinScale(0.5f);
                     transformableNode.setParent(anchorNode);
@@ -115,12 +73,6 @@ public class ARActivity extends AppCompatActivity {
 
                     transformableNode.setEnabled(true);
 
-                    // Add the Node to the scene
-//                    arSceneView.getScene().addChild(modelNode);
-//                    modelNode.setOnTouchListener((hitResult, motionEvent) -> {
-//                        // Handle touch events on the model (optional)
-//                        return true;
-//                    });
                 })
                 .exceptionally(throwable -> {
                     // Handle loading errors (optional)
@@ -170,12 +122,6 @@ public class ARActivity extends AppCompatActivity {
         transformableNode.select();
 
         transformableNode.setEnabled(true);
-
-//        TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
-//        node.setParent(anchorNode);
-//        node.setRenderable(modelRenderable);
-//        node.select();
-
     }
 
     @Override
