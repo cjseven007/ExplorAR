@@ -1,9 +1,10 @@
 package com.example.explorar.ui.courses;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Courses {
+public class Courses implements Serializable {
     String title;
     String content;
     List<Map<String, Object>> ar;

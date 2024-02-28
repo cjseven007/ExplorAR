@@ -8,6 +8,7 @@
     android:padding="8dp"
     android:layout_marginVertical="8dp"
     android:layout_marginHorizontal="4dp"
+    android:background="@drawable/rounded_border"
     >
 
     <TextView
@@ -17,6 +18,7 @@
         android:text="title"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:gravity="center"/>
 
     <TextView

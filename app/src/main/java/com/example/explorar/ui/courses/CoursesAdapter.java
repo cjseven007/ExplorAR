@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.io.Serializable;
-
 public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAdapter.CoursesViewHolder> {
     Context context;
 
@@ -27,12 +25,10 @@ public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAda
     @Override
     protected void onBindViewHolder(@NonNull CoursesViewHolder holder, int position, @NonNull Courses courses) {
         holder.titleTextView.setText(courses.title);
-        holder.contentTextView.setText(courses.content + courses.reading.toString() + courses.videos.toString() + courses.ar.toString());
+        holder.contentTextView.setText(courses.content/* + courses.reading.toString() + courses.videos.toString() + courses.ar.toString()*/);
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
-            intent.putExtra("reading", (Serializable) courses.reading);
-            intent.putExtra("videos", (Serializable) courses.videos);
-            intent.putExtra("ar", (Serializable) courses.ar);
+            intent.putExtra("course", courses);
             context.startActivity(intent);
         });
     }
