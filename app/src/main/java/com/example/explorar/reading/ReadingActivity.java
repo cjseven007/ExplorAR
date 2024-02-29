@@ -9,14 +9,20 @@ import com.example.explorar.R;
 
 public class ReadingActivity extends AppCompatActivity {
 
+    private String title;
+    private String content;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading);
 
-        String content = getIntent().getStringExtra("content");
+        title = getIntent().getStringExtra("title");
+        content = getIntent().getStringExtra("content");
 
-        TextView textView = findViewById(R.id.title_text_view);
-        textView.setText(content);
+        TextView titleTextView = findViewById(R.id.title_text_view);
+        TextView contentTextView = findViewById(R.id.content_text_view);
+
+        titleTextView.setText(title);
+        contentTextView.setText(content);
     }
 }

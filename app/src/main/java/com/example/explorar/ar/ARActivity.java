@@ -37,12 +37,18 @@ public class ARActivity extends AppCompatActivity {
 
     private ModelRenderable modelRenderable;
     private Anchor centerAnchor;
+    private String title;
+    private String content;
     private String link = "https://firebasestorage.googleapis.com/v0/b/testingforvariousthings.appspot.com/o/thomas_the_tank_engine.glb?alt=media&token=8ab4b489-20f1-447e-83f3-5cad04a33c28";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aractivity);
+
+        title = getIntent().getStringExtra("title");
+        content = getIntent().getStringExtra("content");
+
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         arSceneView = arFragment.getArSceneView();
 
@@ -91,8 +97,17 @@ public class ARActivity extends AppCompatActivity {
     }
 
     private void setUpModel() {
+        int ref = R.raw.andy;
+        switch (content) {
+            case "arduino_1":
+                ref = R.raw.arduino_1;
+                break;
+            case "circuit_board_1":
+                ref = R.raw.circuit_board_1;
+                break;
+        }
         ModelRenderable.builder()
-                .setSource(this, R.raw.andy)
+                .setSource(this, ref)
                 .build()
                 .thenAccept(renderable -> modelRenderable = renderable)
                 .exceptionally(throwable -> {

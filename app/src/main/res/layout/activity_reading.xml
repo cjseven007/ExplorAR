@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".reading.ReadingActivity">
 
     <TextView
@@ -16,5 +16,16 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"/>
+
+    <TextView
+        android:layout_below="@+id/title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/content_text_view"
+        android:layout_margin="8dp"
+        android:text="content"
+        android:textSize="16dp"
+        android:visibility="visible"
+        />
 
 </LinearLayout>

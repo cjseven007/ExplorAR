@@ -25,6 +25,9 @@
         android:theme="@style/Theme.ExplorAR"
         tools:targetApi="31">
         <activity
+            android:name=".video.VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".reading.ReadingActivity"
             android:exported="false" />
         <activity
