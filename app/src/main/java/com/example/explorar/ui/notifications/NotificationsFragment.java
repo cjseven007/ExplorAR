@@ -29,8 +29,6 @@ import java.util.ArrayList;
 public class NotificationsFragment extends Fragment {
 
 private FragmentNotificationsBinding binding;
-    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-    private Button button;
     private TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,38 +38,6 @@ private FragmentNotificationsBinding binding;
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        //example code for firebase
-        button = root.findViewById(R.id.get_data_button);
-        textView = root.findViewById(R.id.placeholder_text_view);
-        ArrayList<String> textList = new ArrayList<String>();
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firestore.collection("com/example/explorar/ui/courses").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                textList.add(document.toString());
-                            }
-                        } else {
-                            Toast.makeText(getContext(),
-                                            "Get data failed",
-                                            Toast.LENGTH_LONG)
-                                    .show();
-                        }
-                        String text = "";
-                        for (String str : textList) {
-                            text = text + str;
-                        }
-                        textView.setText(text);
-                    }
-                });
-            }
-        });
-        // firebase code ends here
 
         final TextView textView = binding.textNotifications;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);

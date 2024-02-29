@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.example.explorar.R;
 
@@ -13,6 +14,7 @@ public class VideoActivity extends AppCompatActivity {
     private String title;
     private String content;
     private WebView webView;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,9 @@ public class VideoActivity extends AppCompatActivity {
 
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
+
+        textView = findViewById(R.id.title_text_view);
+        textView.setText(title);
 
         webView = findViewById(R.id.web_view);
         webView.loadData(content, "text/html", "utf-8");
