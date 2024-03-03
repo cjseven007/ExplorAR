@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.explorar.ui.user.User;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+
+import java.util.ArrayList;
 
 public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAdapter.CoursesViewHolder> {
     Context context;
@@ -31,12 +34,20 @@ public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAda
     }
     @Override
     protected void onBindViewHolder(@NonNull CoursesViewHolder holder, int position, @NonNull Courses courses) {
+        ArrayList<Boolean> courseCompletion = new ArrayList<>();
+        for (int i=0; i<6; i++) {
+            courseCompletion.add(false);
+        }
+        User user = new User();
+        user.setCourseCompletion(courseCompletion);
+
         holder.titleTextView.setText(courses.title);
 
         holder.contentTextView.setText(truncateAndAddEllipsis(courses.content, 80));
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
             intent.putExtra("course", courses);
+            intent.putExtra("courseCompletion", user);
             context.startActivity(intent);
         });
     }

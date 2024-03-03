@@ -42,35 +42,6 @@ public class ViewCoursesActivity extends AppCompatActivity {
 
         ArrayList<Boolean> courseCompletion = user.getCourseCompletion();
 
-        /*List<Map<String, Object>> newReading = new ArrayList<>();
-        reading.forEach(stringObjectMap -> {
-            int index = Integer.valueOf(stringObjectMap.get("index").toString());
-            boolean status = courseCompletion.get(index);
-            stringObjectMap.replace("status", status);
-            newReading.add(stringObjectMap);
-            course.setReading(newReading);
-        });
-
-
-        List<Map<String, Object>> newVideos = new ArrayList<>();
-        videos.forEach(stringObjectMap -> {
-            int index = Integer.valueOf(stringObjectMap.get("index").toString());
-            boolean status = courseCompletion.get(index);
-            stringObjectMap.replace("status", status);
-            newVideos.add(stringObjectMap);
-            course.setVideos(newVideos);
-        });
-
-
-        List<Map<String, Object>> newAr = new ArrayList<>();
-        ar.forEach(stringObjectMap -> {
-            int index = Integer.valueOf(stringObjectMap.get("index").toString());
-            boolean status = courseCompletion.get(index);
-            stringObjectMap.replace("status", status);
-            newAr.add(stringObjectMap);
-            course.setAr(newAr);
-        });*/
-
         addCourseItems(reading);
         addCourseItems(videos);
         addCourseItems(ar);

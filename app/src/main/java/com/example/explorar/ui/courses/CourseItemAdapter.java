@@ -54,7 +54,6 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
                 imageButton.setBackgroundResource(R.drawable.baseline_menu_book_24);
                 break;
         }
-        Log.println(Log.DEBUG, "AFAKJBVIHBAEVIUABVIUASBVUADBVO", String.valueOf(courseItem.status));
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +66,7 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
                         intent.putExtra("content", courseItem.content);
                         intent.putExtra("status", courseItem.status);
                         intent.putExtra("lowerBound", courseItem.lowerBound);
+                        Log.println(Log.DEBUG, "AFAKJBVIHBAEVIUABVIUASBVUADBVO", String.valueOf(courseItem.lowerBound));
                         getContext().startActivity(intent);
                         break;
                     case "VIDEO":
