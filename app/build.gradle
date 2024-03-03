@@ -62,6 +62,7 @@ dependencies {
     
     // Dependency to insert GIF into SplashScreen
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'

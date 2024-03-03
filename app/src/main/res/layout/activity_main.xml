@@ -34,13 +34,13 @@
         app:navGraph="@navigation/mobile_navigation" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ar_floating_action_button"
+        android:id="@+id/chat_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:contentDescription="launch_ar"
-        android:src="@drawable/baseline_smart_button_24"
+        android:src="@drawable/chat"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="@+id/nav_host_fragment_activity_main"
         app:layout_constraintHorizontal_bias="1.0"
