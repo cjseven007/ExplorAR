@@ -60,14 +60,6 @@ private FragmentHomeBinding binding;
             }
         });
 
-
-
-
-
-//        listView = root.findViewById(R.id.module_list_view);
-//
-//        ArrayAdapter<String> arr = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, tutorials);
-//        listView.setAdapter(arr);
         return root;
     }
 
