@@ -64,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:progressTint="@color/black"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            />
 
         <TextView
             android:id="@+id/percentage_text_view"

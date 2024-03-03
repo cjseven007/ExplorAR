@@ -22,10 +22,18 @@ public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAda
         this.context = context;
     }
 
+    public static String truncateAndAddEllipsis(String input, int maxLength) {
+        if (input.length() > maxLength) {
+            return input.substring(0, maxLength) + "...";
+        } else {
+            return input;
+        }
+    }
     @Override
     protected void onBindViewHolder(@NonNull CoursesViewHolder holder, int position, @NonNull Courses courses) {
         holder.titleTextView.setText(courses.title);
-        holder.contentTextView.setText(courses.content);
+
+        holder.contentTextView.setText(truncateAndAddEllipsis(courses.content, 80));
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
             intent.putExtra("course", courses);

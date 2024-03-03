@@ -31,6 +31,13 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
         this.completed = completed;
     }
 
+    public static String truncateAndAddEllipsis(String input, int maxLength) {
+        if (input.length() > maxLength) {
+            return input.substring(0, maxLength) + "...";
+        } else {
+            return input;
+        }
+    }
     @Override
     protected void onBindViewHolder(@NonNull MyCoursesAdapter.MyCoursesViewHolder holder, int position, @NonNull Courses myCourses) {
         int totalCompleted = 0;
@@ -79,7 +86,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
         user.setCourseCompletion(courseCompletion);
 
         holder.titleTextView.setText(myCourses.title);
-        holder.contentTextView.setText(myCourses.content);
+        holder.contentTextView.setText(truncateAndAddEllipsis(myCourses.content, 80));
         holder.progressBar.setMax(100);
         holder.progressBar.setProgress(Math.round(percentage*100.0f));
         holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
