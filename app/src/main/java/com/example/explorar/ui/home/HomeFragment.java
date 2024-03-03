@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,27 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentHomeBinding;
 import com.example.explorar.ui.courses.Courses;
-import com.example.explorar.ui.courses.CoursesAdapter;
+import com.example.explorar.ui.courses.MyCoursesAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
 
     RecyclerView recyclerView;
-    CoursesAdapter coursesAdapter;
-    String tutorials[] = {"Algorithms", "Data Structures", "Arduino", "Introduction to Oil and Gas"};
+    MyCoursesAdapter myCoursesAdapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -60,10 +53,10 @@ private FragmentHomeBinding binding;
                 recyclerView = root.findViewById(R.id.recycler_view);
                 FirestoreRecyclerOptions<Courses> options = new FirestoreRecyclerOptions.Builder<Courses>().setQuery(query, Courses.class).build();
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-                coursesAdapter = new CoursesAdapter(options, getContext());
-                recyclerView.setAdapter(coursesAdapter);
-                coursesAdapter.startListening();
-                coursesAdapter.notifyDataSetChanged();
+                myCoursesAdapter = new MyCoursesAdapter(options, getContext());
+                recyclerView.setAdapter(myCoursesAdapter);
+                myCoursesAdapter.startListening();
+                myCoursesAdapter.notifyDataSetChanged();
             }
         });
 
