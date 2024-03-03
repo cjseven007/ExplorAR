@@ -3,12 +3,10 @@ package com.example.explorar.ui.courses;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.explorar.R;
-import com.example.explorar.ui.user.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;

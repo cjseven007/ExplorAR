@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentHomeBinding;
 import com.example.explorar.ui.courses.Courses;
-import com.example.explorar.ui.courses.MyCoursesAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
