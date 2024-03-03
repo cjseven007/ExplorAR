@@ -7,11 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment" >
 
-    <ListView
-
-        android:id="@+id/module_list_view"
+<!--    <ListView-->
+<!--        android:id="@+id/module_list_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         />
 
 </LinearLayout>
