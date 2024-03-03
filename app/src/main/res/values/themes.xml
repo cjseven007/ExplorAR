@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.ExplorAR" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFDAB9</item>
-        <item name="colorPrimaryVariant">#FFDAB9</item>
+        <item name="colorPrimary">#C5AAFD</item>
+        <item name="colorPrimaryVariant">#C5AAFD</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#FFDAB9</item>
-        <item name="colorSecondaryVariant">#FFDAB9</item>
+        <item name="colorSecondary">#C5AAFD</item>
+        <item name="colorSecondaryVariant">#C5AAFD</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
