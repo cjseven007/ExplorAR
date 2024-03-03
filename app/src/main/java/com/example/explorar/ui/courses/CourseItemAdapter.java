@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ import com.example.explorar.R;
 import com.example.explorar.ar.ARActivity;
 import com.example.explorar.reading.ReadingActivity;
 import com.example.explorar.video.VideoActivity;
+import com.google.firebase.Firebase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
@@ -41,11 +44,13 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
 //        TextView contentTextView = convertView.findViewById(R.id.content_text_view);
         TextView typeTextView = convertView.findViewById(R.id.type_text_view);
         ImageView imageView = convertView.findViewById(R.id.image_button);
+        CheckBox statusCheckBox = convertView.findViewById(R.id.completed_check_box);
 
         idTextView.setText(String.valueOf(courseItem.index +1));
         titleTextView.setText(courseItem.title);
 //        contentTextView.setText(courseItem.content);
         typeTextView.setText(courseItem.type);
+        statusCheckBox.setChecked(courseItem.status);
         switch (courseItem.type) {
             case "AR":
                 imageView.setBackgroundResource(R.drawable.baseline_3d_rotation_24);
@@ -92,6 +97,21 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
             }
         });
 
+        statusCheckBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                courseItem.status = statusCheckBox.isChecked();
+
+                updateStatus(courseItem, courseItem.status);
+            }
+        });
+
+
+
         return convertView;
+    }
+
+    private void updateStatus(CourseItem course, boolean newStatus){
+        FirebaseFirestore.getInstance().collection("courses").document();
     }
 }

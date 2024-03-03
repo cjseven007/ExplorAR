@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -108,6 +109,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
     static class MyCoursesViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView, contentTextView, percentageTextView;
         ProgressBar progressBar;
+        CheckBox statusCheckBox;
 
         public MyCoursesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -116,6 +118,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
             contentTextView = itemView.findViewById(R.id.content_text_view);
             percentageTextView = itemView.findViewById(R.id.percentage_text_view);
             progressBar = itemView.findViewById(R.id.course_progress_bar);
+            statusCheckBox = itemView.findViewById(R.id.completed_check_box);
         }
     }
 }
