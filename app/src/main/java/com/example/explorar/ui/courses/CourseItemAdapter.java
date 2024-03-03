@@ -41,14 +41,12 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
 
         TextView idTextView = convertView.findViewById(R.id.id_text_view);
         TextView titleTextView = convertView.findViewById(R.id.title_text_view);
-//        TextView contentTextView = convertView.findViewById(R.id.content_text_view);
         TextView typeTextView = convertView.findViewById(R.id.type_text_view);
         ImageView imageView = convertView.findViewById(R.id.image_button);
         CheckBox statusCheckBox = convertView.findViewById(R.id.completed_check_box);
 
         idTextView.setText(String.valueOf(courseItem.index +1));
         titleTextView.setText(courseItem.title);
-//        contentTextView.setText(courseItem.content);
         typeTextView.setText(courseItem.type);
         statusCheckBox.setChecked(courseItem.status);
         switch (courseItem.type) {

@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.explorar.R;
+import com.example.explorar.ui.user.UserData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 public class ViewCoursesActivity extends AppCompatActivity {
     private Courses course;
-    private User user;
+    private UserData userData;
     private TextView titleTextView;
     private ListView listView;
     private CourseItemAdapter courseItemAdapter;
@@ -27,7 +28,7 @@ public class ViewCoursesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_courses);
 
         course = (Courses) getIntent().getSerializableExtra("course");
-        user = (User) getIntent().getSerializableExtra("courseCompletion");
+        userData = (UserData) getIntent().getSerializableExtra("userData");
 
         titleTextView = findViewById(R.id.title_text_view);
         titleTextView.setText(course.title);
@@ -38,16 +39,18 @@ public class ViewCoursesActivity extends AppCompatActivity {
         List<Map<String, Object>> videos = course.getVideos();
         List<Map<String, Object>> ar = course.getAr();
 
-        ArrayList<Boolean> courseCompletion = user.getCourseCompletion();
-
         addCourseItems(reading);
         addCourseItems(videos);
         addCourseItems(ar);
 
-        for (int i=0; i<courseItems.size(); i++) {
-            CourseItem courseItem = courseItems.get(i);
-            courseItem.setStatus(courseCompletion.get(i));
-            courseItems.set(i, courseItem);
+        ArrayList<String> myCourses = userData.getMyCourses();
+        if (myCourses.contains(course.docId)) {
+            ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(course.getDocId());
+            for (int i=0; i<courseItems.size(); i++) {
+                CourseItem courseItem = courseItems.get(i);
+                courseItem.setStatus(courseCompletion.get(i));
+                courseItems.set(i, courseItem);
+            }
         }
 
         courseItems.sort(Comparator.comparing(CourseItem::getIndex));
