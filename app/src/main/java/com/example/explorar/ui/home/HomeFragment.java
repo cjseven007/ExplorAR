@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentHomeBinding;
 import com.example.explorar.ui.courses.Courses;
-import com.example.explorar.ui.courses.MyCoursesAdapter;
+import com.example.explorar.ui.courses.CoursesAdapter;
+import com.example.explorar.ui.user.UserData;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,8 +33,8 @@ public class HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
 
-    RecyclerView recyclerView;
-    MyCoursesAdapter myCoursesAdapter;
+    private CoursesAdapter coursesAdapter;
+    private RecyclerView recyclerView;
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -42,7 +43,6 @@ private FragmentHomeBinding binding;
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String uid = firebaseAuth.getCurrentUser().getUid();
         FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -50,16 +50,18 @@ private FragmentHomeBinding binding;
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 ArrayList<String> myCourses = (ArrayList<String>) task.getResult().get("courses");
                 List<Map<String, Object>> completed = (List<Map<String, Object>>) task.getResult().get("completed");
+                UserData userData = new UserData();
+                userData.setMyCourses(myCourses);
+                userData.setCompleted(completed);
 
                 Query query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), myCourses);
-
                 recyclerView = root.findViewById(R.id.recycler_view);
                 FirestoreRecyclerOptions<Courses> options = new FirestoreRecyclerOptions.Builder<Courses>().setQuery(query, Courses.class).build();
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-                myCoursesAdapter = new MyCoursesAdapter(options, getContext(), completed);
-                recyclerView.setAdapter(myCoursesAdapter);
-                myCoursesAdapter.startListening();
-                myCoursesAdapter.notifyDataSetChanged();
+                coursesAdapter = new CoursesAdapter(options, getContext(), userData);
+                recyclerView.setAdapter(coursesAdapter);
+                coursesAdapter.startListening();
+                coursesAdapter.notifyDataSetChanged();
             }
         });
 
