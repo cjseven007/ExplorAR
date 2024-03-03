@@ -3,10 +3,12 @@ package com.example.explorar.ui.courses;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.explorar.R;
+import com.example.explorar.ui.user.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 public class ViewCoursesActivity extends AppCompatActivity {
     private Courses course;
+    private User user;
     private TextView titleTextView;
     private ListView listView;
     private CourseItemAdapter courseItemAdapter;
@@ -26,6 +29,7 @@ public class ViewCoursesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_courses);
 
         course = (Courses) getIntent().getSerializableExtra("course");
+        user = (User) getIntent().getSerializableExtra("courseCompletion");
 
         titleTextView = findViewById(R.id.title_text_view);
         titleTextView.setText(course.title);
@@ -36,9 +40,46 @@ public class ViewCoursesActivity extends AppCompatActivity {
         List<Map<String, Object>> videos = course.getVideos();
         List<Map<String, Object>> ar = course.getAr();
 
+        ArrayList<Boolean> courseCompletion = user.getCourseCompletion();
+
+        /*List<Map<String, Object>> newReading = new ArrayList<>();
+        reading.forEach(stringObjectMap -> {
+            int index = Integer.valueOf(stringObjectMap.get("index").toString());
+            boolean status = courseCompletion.get(index);
+            stringObjectMap.replace("status", status);
+            newReading.add(stringObjectMap);
+            course.setReading(newReading);
+        });
+
+
+        List<Map<String, Object>> newVideos = new ArrayList<>();
+        videos.forEach(stringObjectMap -> {
+            int index = Integer.valueOf(stringObjectMap.get("index").toString());
+            boolean status = courseCompletion.get(index);
+            stringObjectMap.replace("status", status);
+            newVideos.add(stringObjectMap);
+            course.setVideos(newVideos);
+        });
+
+
+        List<Map<String, Object>> newAr = new ArrayList<>();
+        ar.forEach(stringObjectMap -> {
+            int index = Integer.valueOf(stringObjectMap.get("index").toString());
+            boolean status = courseCompletion.get(index);
+            stringObjectMap.replace("status", status);
+            newAr.add(stringObjectMap);
+            course.setAr(newAr);
+        });*/
+
         addCourseItems(reading);
         addCourseItems(videos);
         addCourseItems(ar);
+
+        for (int i=0; i<courseItems.size(); i++) {
+            CourseItem courseItem = courseItems.get(i);
+            courseItem.setStatus(courseCompletion.get(i));
+            courseItems.set(i, courseItem);
+        }
 
         courseItems.sort(Comparator.comparing(CourseItem::getIndex));
 

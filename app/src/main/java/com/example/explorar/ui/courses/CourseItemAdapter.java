@@ -3,6 +3,7 @@ package com.example.explorar.ui.courses;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
                 imageButton.setBackgroundResource(R.drawable.baseline_menu_book_24);
                 break;
         }
+        Log.println(Log.DEBUG, "AFAKJBVIHBAEVIUABVIUASBVUADBVO", String.valueOf(courseItem.status));
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,7 +2,6 @@ package com.example.explorar.ui.courses;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.explorar.R;
+import com.example.explorar.ui.user.User;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +35,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
     protected void onBindViewHolder(@NonNull MyCoursesAdapter.MyCoursesViewHolder holder, int position, @NonNull Courses myCourses) {
         int totalCompleted = 0;
         float percentage = 0.0f;
+        Courses newMyCourses = myCourses;
 
         ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) completed.get(0).get(myCourses.docId);
         for (int i=0; i<courseCompletion.size(); i++) {
@@ -52,7 +52,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
             stringObjectMap.replace("status", status);
             newReading.add(stringObjectMap);
         });
-        myCourses.setReading(newReading);
+        newMyCourses.setReading(newReading);
 
         List<Map<String, Object>> videos = myCourses.getVideos();
         List<Map<String, Object>> newVideos = new ArrayList<>();
@@ -62,7 +62,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
             stringObjectMap.replace("status", status);
             newVideos.add(stringObjectMap);
         });
-        myCourses.setVideos(newVideos);
+        newMyCourses.setVideos(newVideos);
 
         List<Map<String, Object>> ar = myCourses.getAr();
         List<Map<String, Object>> newAr = new ArrayList<>();
@@ -72,9 +72,11 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
             stringObjectMap.replace("status", status);
             newAr.add(stringObjectMap);
         });
-        myCourses.setAr(newAr);
+        newMyCourses.setAr(newAr);
 
         percentage = (totalCompleted*1.0f)/((reading.size() + videos.size() + ar.size())*1.0f);
+        User user = new User();
+        user.setCourseCompletion(courseCompletion);
 
         holder.titleTextView.setText(myCourses.title);
         holder.contentTextView.setText(myCourses.content);
@@ -83,7 +85,8 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
         holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
-            intent.putExtra("course", myCourses);
+            intent.putExtra("course", newMyCourses);
+            intent.putExtra("courseCompletion", user);
             context.startActivity(intent);
         });
     }
