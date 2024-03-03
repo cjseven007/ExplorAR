@@ -2,13 +2,12 @@ package com.example.explorar.ui.courses;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +17,8 @@ import com.example.explorar.R;
 import com.example.explorar.ar.ARActivity;
 import com.example.explorar.reading.ReadingActivity;
 import com.example.explorar.video.VideoActivity;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -35,23 +36,25 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+        TextView idTextView = convertView.findViewById(R.id.id_text_view);
         TextView titleTextView = convertView.findViewById(R.id.title_text_view);
-        TextView contentTextView = convertView.findViewById(R.id.content_text_view);
+//        TextView contentTextView = convertView.findViewById(R.id.content_text_view);
         TextView typeTextView = convertView.findViewById(R.id.type_text_view);
-        ImageButton imageButton = convertView.findViewById(R.id.image_button);
+        ImageView imageView = convertView.findViewById(R.id.image_button);
 
+        idTextView.setText(String.valueOf(courseItem.index +1));
         titleTextView.setText(courseItem.title);
-        contentTextView.setText(courseItem.content);
+//        contentTextView.setText(courseItem.content);
         typeTextView.setText(courseItem.type);
         switch (courseItem.type) {
             case "AR":
-                imageButton.setBackgroundResource(R.drawable.baseline_3d_rotation_24);
+                imageView.setBackgroundResource(R.drawable.baseline_3d_rotation_24);
                 break;
             case  "VIDEO":
-                imageButton.setBackgroundResource(R.drawable.baseline_ondemand_video_24);
+                imageView.setBackgroundResource(R.drawable.baseline_ondemand_video_24);
                 break;
             case "READING":
-                imageButton.setBackgroundResource(R.drawable.baseline_menu_book_24);
+                imageView.setBackgroundResource(R.drawable.baseline_menu_book_24);
                 break;
         }
 
