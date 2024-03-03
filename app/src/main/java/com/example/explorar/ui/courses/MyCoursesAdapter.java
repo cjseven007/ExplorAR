@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
     @Override
     protected void onBindViewHolder(@NonNull MyCoursesAdapter.MyCoursesViewHolder holder, int position, @NonNull Courses myCourses) {
         int totalCompleted = 0;
-        double percentage = 0;
+        float percentage = 0.0f;
 
         ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) completed.get(0).get(myCourses.docId);
         for (int i=0; i<courseCompletion.size(); i++) {
@@ -73,10 +74,13 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
         });
         myCourses.setAr(newAr);
 
-        percentage = (totalCompleted*1.0)/((reading.size() + videos.size() + ar.size())*1.0);
+        percentage = (totalCompleted*1.0f)/((reading.size() + videos.size() + ar.size())*1.0f);
 
         holder.titleTextView.setText(myCourses.title);
-        holder.contentTextView.setText(myCourses.content/* + courses.reading.toString() + courses.videos.toString() + courses.ar.toString()*/);
+        holder.contentTextView.setText(myCourses.content);
+        holder.progressBar.setMax(100);
+        holder.progressBar.setProgress(Math.round(percentage*100.0f));
+        holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
             intent.putExtra("course", myCourses);
@@ -92,14 +96,16 @@ public class MyCoursesAdapter extends FirestoreRecyclerAdapter<Courses, MyCourse
     }
 
     static class MyCoursesViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, contentTextView;
+        TextView titleTextView, contentTextView, percentageTextView;
+        ProgressBar progressBar;
 
         public MyCoursesViewHolder(@NonNull View itemView) {
             super(itemView);
 
             titleTextView = itemView.findViewById(R.id.title_text_view);
             contentTextView = itemView.findViewById(R.id.content_text_view);
-
+            percentageTextView = itemView.findViewById(R.id.percentage_text_view);
+            progressBar = itemView.findViewById(R.id.course_progress_bar);
         }
     }
 }

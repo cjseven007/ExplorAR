@@ -25,7 +25,7 @@ public class CoursesAdapter extends FirestoreRecyclerAdapter<Courses, CoursesAda
     @Override
     protected void onBindViewHolder(@NonNull CoursesViewHolder holder, int position, @NonNull Courses courses) {
         holder.titleTextView.setText(courses.title);
-        holder.contentTextView.setText(courses.content/* + courses.reading.toString() + courses.videos.toString() + courses.ar.toString()*/);
+        holder.contentTextView.setText(courses.content);
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ViewCoursesActivity.class);
             intent.putExtra("course", courses);

@@ -59,12 +59,15 @@
         android:layout_marginTop="10dp">
 
         <ProgressBar
-            android:id="@+id/courseProgressBar"
+            android:id="@+id/course_progress_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:progressTint="@color/black"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
         <TextView
+            android:id="@+id/percentage_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
