@@ -55,7 +55,7 @@ public class ViewCoursesActivity extends AppCompatActivity {
 
         courseItems.sort(Comparator.comparing(CourseItem::getIndex));
 
-        courseItemAdapter = new CourseItemAdapter(ViewCoursesActivity.this, courseItems);
+        courseItemAdapter = new CourseItemAdapter(ViewCoursesActivity.this, courseItems, course);
 
         listView.setAdapter(courseItemAdapter);
     }

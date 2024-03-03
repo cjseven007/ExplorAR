@@ -23,8 +23,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
-    public CourseItemAdapter(@NonNull Context context, ArrayList<CourseItem> courseItems) {
+    Context context;
+    Courses course;
+    public CourseItemAdapter(@NonNull Context context, ArrayList<CourseItem> courseItems, Courses course) {
         super(context, R.layout.list_item, courseItems);
+        this.context = context;
+        this.course = course;
     }
 
     @NonNull
@@ -67,7 +71,6 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
                         intent.putExtra("content", courseItem.content);
                         intent.putExtra("status", courseItem.status);
                         intent.putExtra("lowerBound", courseItem.lowerBound);
-                        Log.println(Log.DEBUG, "AFAKJBVIHBAEVIUABVIUASBVUADBVO", String.valueOf(courseItem.lowerBound));
                         getContext().startActivity(intent);
                         break;
                     case "VIDEO":
