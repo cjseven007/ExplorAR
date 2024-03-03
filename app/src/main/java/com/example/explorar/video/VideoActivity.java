@@ -13,6 +13,8 @@ public class VideoActivity extends AppCompatActivity {
 
     private String title;
     private String content;
+    private boolean status;
+    private float lowerBound;
     private WebView webView;
     private TextView textView;
     @Override
@@ -22,6 +24,8 @@ public class VideoActivity extends AppCompatActivity {
 
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
+        status = getIntent().getBooleanExtra("status", false);
+        lowerBound = getIntent().getFloatExtra("lowerBound", 0.5f);
 
         textView = findViewById(R.id.title_text_view);
         textView.setText(title);

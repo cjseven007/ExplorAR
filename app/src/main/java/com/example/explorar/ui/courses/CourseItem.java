@@ -47,12 +47,4 @@ public class CourseItem {
     public void setLowerBound(float lowerBound) {
         this.lowerBound = lowerBound;
     }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 }

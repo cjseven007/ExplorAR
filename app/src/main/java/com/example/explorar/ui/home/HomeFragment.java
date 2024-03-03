@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -47,13 +49,14 @@ private FragmentHomeBinding binding;
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 ArrayList<String> myCourses = (ArrayList<String>) task.getResult().get("courses");
+                List<Map<String, Object>> completed = (List<Map<String, Object>>) task.getResult().get("completed");
 
                 Query query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), myCourses);
 
                 recyclerView = root.findViewById(R.id.recycler_view);
                 FirestoreRecyclerOptions<Courses> options = new FirestoreRecyclerOptions.Builder<Courses>().setQuery(query, Courses.class).build();
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-                myCoursesAdapter = new MyCoursesAdapter(options, getContext());
+                myCoursesAdapter = new MyCoursesAdapter(options, getContext(), completed);
                 recyclerView.setAdapter(myCoursesAdapter);
                 myCoursesAdapter.startListening();
                 myCoursesAdapter.notifyDataSetChanged();

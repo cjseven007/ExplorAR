@@ -7,6 +7,7 @@ import java.util.Map;
 public class Courses implements Serializable {
     String title;
     String content;
+    String docId;
     List<Map<String, Object>> ar;
     List<Map<String, Object>> reading;
     List<Map<String, Object>> videos;
@@ -25,6 +26,14 @@ public class Courses implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
     }
 
     public List<Map<String, Object>> getAr() {
