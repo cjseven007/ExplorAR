@@ -5,6 +5,8 @@ public class CourseItem {
     String content;
     String type;
     int index;
+    float lowerBound;
+    boolean status;
 
     public String getTitle() {
         return title;
@@ -36,5 +38,21 @@ public class CourseItem {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public float getLowerBound() {
+        return lowerBound;
+    }
+
+    public void setLowerBound(float lowerBound) {
+        this.lowerBound = lowerBound;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

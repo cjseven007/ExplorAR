@@ -39,6 +39,8 @@ public class ARActivity extends AppCompatActivity {
     private Anchor centerAnchor;
     private String title;
     private String content;
+    private boolean status;
+    private float lowerBound;
     private String link = "https://firebasestorage.googleapis.com/v0/b/testingforvariousthings.appspot.com/o/thomas_the_tank_engine.glb?alt=media&token=8ab4b489-20f1-447e-83f3-5cad04a33c28";
 
     @Override
@@ -48,6 +50,9 @@ public class ARActivity extends AppCompatActivity {
 
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
+        status = getIntent().getBooleanExtra("status", false);
+        lowerBound = getIntent().getFloatExtra("lowerBound", 0.5f);
+
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         arSceneView = arFragment.getArSceneView();
@@ -129,8 +134,8 @@ public class ARActivity extends AppCompatActivity {
 
     private void createModel(AnchorNode anchorNode){
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
-        transformableNode.getScaleController().setMaxScale(1f);
-        transformableNode.getScaleController().setMinScale(0.5f);
+        transformableNode.getScaleController().setMaxScale(lowerBound+0.5f);
+        transformableNode.getScaleController().setMinScale(lowerBound);
         transformableNode.setParent(anchorNode);
         transformableNode.setRenderable(modelRenderable);
         arSceneView.getScene().addChild(anchorNode);

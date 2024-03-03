@@ -63,18 +63,24 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
                         intent = new Intent(getContext(), ARActivity.class);
                         intent.putExtra("title", courseItem.title);
                         intent.putExtra("content", courseItem.content);
+                        intent.putExtra("status", courseItem.status);
+                        intent.putExtra("lowerBound", courseItem.lowerBound);
                         getContext().startActivity(intent);
                         break;
                     case "VIDEO":
                         intent = new Intent(getContext(), VideoActivity.class);
                         intent.putExtra("title", courseItem.title);
                         intent.putExtra("content", courseItem.content);
+                        intent.putExtra("status", courseItem.status);
+                        intent.putExtra("lowerBound", courseItem.lowerBound);
                         getContext().startActivity(intent);
                         break;
                     case "READING":
                         intent = new Intent(getContext(), ReadingActivity.class);
                         intent.putExtra("title", courseItem.title);
                         intent.putExtra("content", courseItem.content);
+                        intent.putExtra("status", courseItem.status);
+                        intent.putExtra("lowerBound", courseItem.lowerBound);
                         getContext().startActivity(intent);
                         break;
                 }
