@@ -5,34 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/my_courses_layout"
-    android:padding="8dp"
+    android:padding="12dp"
     android:layout_marginVertical="8dp"
     android:layout_marginHorizontal="4dp"
     android:background="@drawable/rounded_border"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/explorar_splash"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_text_view"
+                android:text="title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="start"
+                android:justificationMode="inter_word"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content_text_view"
+                android:text="content"
+                android:textSize="16sp"
+                android:visibility="visible"
+                android:justificationMode="inter_word"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_text_view"
-        android:text="title"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
+        <ProgressBar
+            android:id="@+id/courseProgressBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="100%"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/content_text_view"
-        android:text="content"
-        android:textSize="20dp"
-        android:visibility="visible"
-        />
+    </LinearLayout>
+
 
 </LinearLayout>
