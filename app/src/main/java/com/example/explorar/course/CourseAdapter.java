@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -70,6 +71,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             holder.progressBar.setMax(100);
             holder.progressBar.setProgress(Math.round(percentage*100.0f));
             holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
+            holder.registerButtonLinearLayout.setVisibility(View.GONE);
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(context, IndividualCourseActivity.class);
                 intent.putExtra("course", course);
@@ -79,6 +81,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             holder.progressBarLinearLayout.setVisibility(View.GONE);
             holder.titleTextView.setText(course.title);
             holder.contentTextView.setText(truncateAndAddEllipsis(course.content, 80));
+            holder.progressBarLinearLayout.setVisibility(View.GONE);
         }
     }
 
@@ -90,19 +93,21 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
     }
 
     static class CoursesViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout progressBarLinearLayout;
+        LinearLayout progressBarLinearLayout, registerButtonLinearLayout;
         TextView titleTextView, contentTextView, percentageTextView;
         ProgressBar progressBar;
+        Button register_button;
 
         public CoursesViewHolder(@NonNull View itemView) {
             super(itemView);
 
             progressBarLinearLayout = itemView.findViewById(R.id.progress_bar_linear_layout);
+            registerButtonLinearLayout = itemView.findViewById(R.id.register_button_linear_layout);
             titleTextView = itemView.findViewById(R.id.title_text_view);
             contentTextView = itemView.findViewById(R.id.content_text_view);
             percentageTextView = itemView.findViewById(R.id.percentage_text_view);
             progressBar = itemView.findViewById(R.id.course_progress_bar);
-
+            register_button = itemView.findViewById(R.id.register_button);
         }
     }
 }
