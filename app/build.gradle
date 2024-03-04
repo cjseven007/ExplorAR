@@ -63,6 +63,15 @@ dependencies {
     // Dependency to insert GIF into SplashScreen
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
 
+    // add the dependency for the Google AI client SDK for Android
+    implementation("com.google.ai.client.generativeai:generativeai:0.1.2")
+
+    // Required for one-shot operations (to use `ListenableFuture` from Reactive Streams)
+    implementation("com.google.guava:guava:31.0.1-android")
+
+    // Required for streaming operations (to use `Publisher` from Guava Android)
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
+
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'

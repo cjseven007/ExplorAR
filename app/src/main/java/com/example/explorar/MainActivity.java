@@ -1,5 +1,7 @@
 package com.example.explorar;
 
+
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -10,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.explorar.databinding.ActivityMainBinding;
+import com.example.explorar.ui.chat.ChatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         FloatingActionButton ar_fab = findViewById(R.id.chat_button);
-//        ar_fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ARActivity.class)));
+        ar_fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ChatActivity.class)));
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
