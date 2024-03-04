@@ -102,8 +102,21 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
             @Override
             public void onClick(View view){
                 courseItem.status = statusCheckBox.isChecked();
+                Courses newCourse = course;
+                switch (courseItem.type) {
+                    case "AR":
 
-                updateStatus(courseItem, courseItem.status);
+                        break;
+                    case  "VIDEO":
+
+                        break;
+                    case "READING":
+
+                        break;
+                }
+
+
+                updateStatus(courseItem);
             }
         });
 
@@ -112,7 +125,7 @@ public class CourseItemAdapter extends ArrayAdapter<CourseItem> {
         return convertView;
     }
 
-    private void updateStatus(CourseItem course, boolean newStatus){
-        FirebaseFirestore.getInstance().collection("courses").document();
+    private void updateStatus(CourseItem courseItem){
+        FirebaseFirestore.getInstance().collection("courses").document(course.docId).set(courseIt);
     }
 }
