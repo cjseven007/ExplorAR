@@ -79,11 +79,6 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             holder.progressBarLinearLayout.setVisibility(View.GONE);
             holder.titleTextView.setText(course.title);
             holder.contentTextView.setText(truncateAndAddEllipsis(course.content, 80));
-            holder.itemView.setOnClickListener(view -> {
-                Intent intent = new Intent(context, IndividualCourseActivity.class);
-                intent.putExtra("course", course);
-                context.startActivity(intent);
-            });
         }
     }
 
