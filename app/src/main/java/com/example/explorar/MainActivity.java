@@ -1,7 +1,6 @@
 package com.example.explorar;
 
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,7 +10,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.explorar.ar.ARActivity;
 import com.example.explorar.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

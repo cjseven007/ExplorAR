@@ -1,4 +1,4 @@
-package com.example.explorar.ar;
+package com.example.explorar.ui.ar;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +30,6 @@ public class ARActivity extends AppCompatActivity {
     private String content;
     private boolean status;
     private float lowerBound;
-    private String link = "https://firebasestorage.googleapis.com/v0/b/testingforvariousthings.appspot.com/o/thomas_the_tank_engine.glb?alt=media&token=8ab4b489-20f1-447e-83f3-5cad04a33c28";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +97,9 @@ public class ARActivity extends AppCompatActivity {
                 break;
             case "circuit_board_1":
                 ref = R.raw.circuit_board_1;
+                break;
+            case "oil_pump":
+                ref = R.raw.oil_pump;
                 break;
         }
         ModelRenderable.builder()

@@ -13,15 +13,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.MainActivity;
 import com.example.explorar.R;
 import com.example.explorar.ui.login.LoginActivity;
+import com.example.explorar.user.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
-    private EditText emailEditText, passwordEditText;
+    private EditText studentIdEditText, nameEditText, emailEditText, passwordEditText;
     private TextView textView;
     private Button button;
     private ProgressBar progressbar;
@@ -36,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
         // Init FirebaseAuth instance
         firebaseAuth = FirebaseAuth.getInstance();
 
+        nameEditText = findViewById(R.id.name_edit_text);
+        studentIdEditText = findViewById(R.id.student_id_edit_text);
         emailEditText = findViewById(R.id.email_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         textView = findViewById(R.id.login_text_view);
@@ -64,11 +75,27 @@ public class RegisterActivity extends AppCompatActivity {
     {
         progressbar.setVisibility(View.VISIBLE);
 
-        String email, password;
+        String name, studentId, email, password;
+        name = nameEditText.getText().toString();
+        studentId = studentIdEditText.getText().toString();
         email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
         // Validations for input email and password
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(getApplicationContext(),
+                            "Please enter name!!",
+                            Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+        if (TextUtils.isEmpty(studentId)) {
+            Toast.makeText(getApplicationContext(),
+                            "Please enter student ID!!",
+                            Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(),
                             "Please enter email!!",
@@ -92,6 +119,17 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
                     if (task.isSuccessful()) {
+                        String uid = task.getResult().getUser().getUid();
+                        UserData userData = new UserData();
+                        userData.setName(name);
+                        userData.setStudentId(studentId);
+                        userData.setUserId(uid);
+                        userData.setCompleted(new ArrayList<>());
+                        userData.setCourses(new ArrayList<>());
+
+                        GlobalVariables.setUserData(userData);
+
+                        FirebaseFirestore.getInstance().collection("users").document(uid).set(userData);
                         Toast.makeText(getApplicationContext(),
                                         "Registration successful!",
                                         Toast.LENGTH_LONG)
