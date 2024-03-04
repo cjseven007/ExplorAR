@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.MainActivity;
 import com.example.explorar.R;
 import com.example.explorar.ui.login.LoginActivity;
@@ -125,6 +126,8 @@ public class RegisterActivity extends AppCompatActivity {
                         userData.setUserId(uid);
                         userData.setCompleted(new ArrayList<>());
                         userData.setCourses(new ArrayList<>());
+
+                        GlobalVariables.setUserData(userData);
 
                         FirebaseFirestore.getInstance().collection("users").document(uid).set(userData);
                         Toast.makeText(getApplicationContext(),

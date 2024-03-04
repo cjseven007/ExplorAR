@@ -30,6 +30,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
 
         // on below line we are configuring our window to full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
