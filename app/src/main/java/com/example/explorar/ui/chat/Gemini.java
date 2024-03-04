@@ -13,14 +13,19 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 public class Gemini {
 
-    public void getResponse(String query, ResponseCallback callback){
+    public void getResponse(String query, ResponseCallback callback, List<Message> messageList){
         GenerativeModelFutures model = getModel();
 
-        Content content = new Content.Builder().addText(query).build();
+        StringBuilder fullQuery = new StringBuilder(query);
+        for (Message message : messageList) {
+            fullQuery.append(" ").append(message.message);
+        }
+        Content content = new Content.Builder().addText(fullQuery.toString()).build();
         Executor executor = Runnable::run;
 
         ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
@@ -40,8 +45,10 @@ public class Gemini {
         }, executor);
     }
 
+
     private GenerativeModelFutures getModel(){
         String apiKey = "AIzaSyB_WVBm5T_lHxqNnLoAmix84-3S8_ETsik";
+
 
         SafetySetting harrassmentSafety = new SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH);
 
@@ -49,6 +56,7 @@ public class Gemini {
         configBuilder.temperature = 0.9f;
         configBuilder.topK = 16;
         configBuilder.topP = 0.1f;
+        configBuilder.maxOutputTokens = 300;
         GenerationConfig generationConfig = configBuilder.build();
 
         GenerativeModel gm = new GenerativeModel(

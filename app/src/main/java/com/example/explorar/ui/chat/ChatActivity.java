@@ -64,7 +64,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onError(Throwable throwable) {
                 runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        });
+        }, messageList);
     }
 
     private void addMessage(String username, String message) {
