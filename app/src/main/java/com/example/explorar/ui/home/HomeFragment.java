@@ -42,7 +42,7 @@ private FragmentHomeBinding binding;
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Query query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), GlobalVariables.userData.getMyCourses());
+        Query query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), GlobalVariables.getUserData().getMyCourses());
         recyclerView = root.findViewById(R.id.recycler_view);
         FirestoreRecyclerOptions<Course> options = new FirestoreRecyclerOptions.Builder<Course>().setQuery(query, Course.class).build();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));

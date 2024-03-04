@@ -31,7 +31,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
     public CourseAdapter(@NonNull FirestoreRecyclerOptions<Course> options, Context context) {
         super(options);
         this.context = context;
-        this.userData = GlobalVariables.userData;
+        this.userData = GlobalVariables.getUserData();
     }
 
     public static String truncateAndAddEllipsis(String input, int maxLength) {

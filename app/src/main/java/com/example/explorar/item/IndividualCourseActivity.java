@@ -30,7 +30,7 @@ public class IndividualCourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_individual_course);
 
         course = (Course) getIntent().getSerializableExtra("course");
-        userData = GlobalVariables.userData;
+        userData = GlobalVariables.getUserData();
 
         titleTextView = findViewById(R.id.title_text_view);
         titleTextView.setText(course.getTitle());

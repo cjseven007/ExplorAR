@@ -65,33 +65,23 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+                Intent intent = new Intent();
                 switch (item.type) {
                     case "AR":
                         intent = new Intent(getContext(), ARActivity.class);
-                        intent.putExtra("title", item.title);
-                        intent.putExtra("content", item.content);
-                        intent.putExtra("status", item.status);
-                        intent.putExtra("lowerBound", item.lowerBound);
-                        getContext().startActivity(intent);
                         break;
                     case "VIDEO":
                         intent = new Intent(getContext(), VideoActivity.class);
-                        intent.putExtra("title", item.title);
-                        intent.putExtra("content", item.content);
-                        intent.putExtra("status", item.status);
-                        intent.putExtra("lowerBound", item.lowerBound);
-                        getContext().startActivity(intent);
                         break;
                     case "READING":
                         intent = new Intent(getContext(), ReadingActivity.class);
-                        intent.putExtra("title", item.title);
-                        intent.putExtra("content", item.content);
-                        intent.putExtra("status", item.status);
-                        intent.putExtra("lowerBound", item.lowerBound);
-                        getContext().startActivity(intent);
                         break;
                 }
+                intent.putExtra("title", item.title);
+                intent.putExtra("content", item.content);
+                intent.putExtra("status", item.status);
+                intent.putExtra("lowerBound", item.lowerBound);
+                getContext().startActivity(intent);
             }
         });
 

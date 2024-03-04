@@ -55,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                     userData.setMyCourses(myCourses);
                     userData.setCompleted(completed);
 
-                    GlobalVariables.userData = userData;
+                    GlobalVariables.setUserData(userData);
 
                     // on below line we are calling handler to run a task
                     // for specific time interval
