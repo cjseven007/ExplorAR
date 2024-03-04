@@ -14,18 +14,9 @@ import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentSearchBinding;
 import com.example.explorar.course.Course;
 import com.example.explorar.course.CourseAdapter;
-import com.example.explorar.user.UserData;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class SearchFragment extends Fragment {
 

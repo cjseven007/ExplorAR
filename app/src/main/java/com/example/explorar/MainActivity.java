@@ -1,6 +1,5 @@
 package com.example.explorar;
 
-
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,7 +12,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.explorar.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
