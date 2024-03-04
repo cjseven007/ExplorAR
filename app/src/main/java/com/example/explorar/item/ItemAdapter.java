@@ -13,22 +13,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.R;
 import com.example.explorar.ui.ar.ARActivity;
 import com.example.explorar.ui.reading.ReadingActivity;
 import com.example.explorar.course.Course;
 import com.example.explorar.ui.video.VideoActivity;
+import com.example.explorar.user.UserData;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemAdapter extends ArrayAdapter<Item> {
-    Context context;
     Course course;
+    UserData userData;
     public ItemAdapter(@NonNull Context context, ArrayList<Item> items, Course course) {
         super(context, R.layout.list_item, items);
-        this.context = context;
         this.course = course;
+        this.userData = GlobalVariables.getUserData();
     }
 
     @NonNull
@@ -94,12 +99,17 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             }
         });
 
-
-
         return convertView;
     }
 
-    private void updateStatus(Item course, boolean newStatus){
-        FirebaseFirestore.getInstance().collection("course").document();
+    private void updateStatus(Item item, boolean newStatus){
+        String courseId = course.getDocId();
+        List<Map<String, Object>> completed = userData.getCompleted();
+        ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(courseId);
+        courseCompletion.set(item.getIndex(), newStatus);
+        completed.get(0).replace(courseId, courseCompletion);
+
+        userData.setCompleted(completed);
+        FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
     }
 }

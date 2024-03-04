@@ -1,30 +1,24 @@
 package com.example.explorar.ui.splash;
 
-import static com.google.firebase.firestore.FieldPath.documentId;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.explorar.GlobalVariables;
 import com.example.explorar.MainActivity;
 import com.example.explorar.R;
-import com.example.explorar.course.Course;
-import com.example.explorar.course.CourseAdapter;
 import com.example.explorar.ui.login.LoginActivity;
 import com.example.explorar.user.UserData;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +43,12 @@ public class SplashActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    ArrayList<String> myCourses = (ArrayList<String>) task.getResult().get("courses");
+                    String userId = (String) task.getResult().get("userId");
+                    ArrayList<String> courses = (ArrayList<String>) task.getResult().get("courses");
                     List<Map<String, Object>> completed = (List<Map<String, Object>>) task.getResult().get("completed");
                     UserData userData = new UserData();
-                    userData.setMyCourses(myCourses);
+                    userData.setUserId(userId);
+                    userData.setCourses(courses);
                     userData.setCompleted(completed);
 
                     GlobalVariables.setUserData(userData);
@@ -66,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                    }, 2000);
+                    }, 1200);
                 }
             });
         } else {

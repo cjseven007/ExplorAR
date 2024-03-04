@@ -49,7 +49,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
 
         int totalItems = reading.size() + videos.size() + ar.size();
 
-        ArrayList<String> myCourses = userData.getMyCourses();
+        ArrayList<String> myCourses = userData.getCourses();
         List<Map<String, Object>> completed = userData.getCompleted();
 
         if (myCourses.contains(course.docId)) {

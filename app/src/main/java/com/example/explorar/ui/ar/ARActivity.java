@@ -98,6 +98,9 @@ public class ARActivity extends AppCompatActivity {
             case "circuit_board_1":
                 ref = R.raw.circuit_board_1;
                 break;
+            case "oil_pump":
+                ref = R.raw.oil_pump;
+                break;
         }
         ModelRenderable.builder()
                 .setSource(this, ref)

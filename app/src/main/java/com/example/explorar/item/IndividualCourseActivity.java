@@ -45,7 +45,9 @@ public class IndividualCourseActivity extends AppCompatActivity {
         addCourseItems(videos);
         addCourseItems(ar);
 
-        ArrayList<String> myCourses = userData.getMyCourses();
+        items.sort(Comparator.comparing(Item::getIndex));
+
+        ArrayList<String> myCourses = userData.getCourses();
         if (myCourses.contains(course.getDocId())) {
             ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(course.getDocId());
             for (int i = 0; i< items.size(); i++) {
@@ -54,8 +56,6 @@ public class IndividualCourseActivity extends AppCompatActivity {
                 items.set(i, item);
             }
         }
-
-        items.sort(Comparator.comparing(Item::getIndex));
 
         itemAdapter = new ItemAdapter(IndividualCourseActivity.this, items, course);
 
