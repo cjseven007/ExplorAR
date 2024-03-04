@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.explorar.item.IndividualCourseActivity;
 import com.example.explorar.user.UserData;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -23,7 +22,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -70,8 +68,8 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
 
             percentage = (totalCompleted*1.0f)/(totalItems*1.0f);
 
-            holder.titleTextView.setText(course.title);
-            holder.contentTextView.setText(truncateAndAddEllipsis(course.content, 80));
+            holder.titleTextView.setText(course.getTitle());
+            holder.contentTextView.setText(truncateAndAddEllipsis(course.getContent(), 80));
             holder.progressBar.setMax(100);
             holder.progressBar.setProgress(Math.round(percentage*100.0f));
             holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
@@ -84,8 +82,8 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             });
         } else {
             holder.progressBarLinearLayout.setVisibility(View.GONE);
-            holder.titleTextView.setText(course.title);
-            holder.contentTextView.setText(truncateAndAddEllipsis(course.content, 80));
+            holder.titleTextView.setText(course.getTitle());
+            holder.contentTextView.setText(truncateAndAddEllipsis(course.getContent(), 80));
             holder.progressBarLinearLayout.setVisibility(View.GONE);
 
             holder.registerButton.setOnClickListener(view -> {

@@ -51,7 +51,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         CheckBox statusCheckBox = convertView.findViewById(R.id.completed_check_box);
 
         idTextView.setText(String.valueOf(item.index +1));
-        titleTextView.setText(item.title);
+        titleTextView.setText(item.getTitle());
         typeTextView.setText(item.type);
         statusCheckBox.setChecked(item.status);
         switch (item.type) {
@@ -81,8 +81,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
                         intent = new Intent(getContext(), ReadingActivity.class);
                         break;
                 }
-                intent.putExtra("title", item.title);
-                intent.putExtra("content", item.content);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("content", item.getContent());
                 intent.putExtra("status", item.status);
                 intent.putExtra("lowerBound", item.lowerBound);
                 getContext().startActivity(intent);
