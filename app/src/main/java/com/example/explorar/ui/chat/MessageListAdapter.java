@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,13 +33,19 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        Message message = messages.get(position);
 
+        Message message = messages.get(position);
         holder.textViewUsername.setText(message.username);
         holder.textViewMessage.setText(message.message);
         if (holder.textViewUsername.getText() == "You"){
             holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.purple_200));
             holder.textViewMessage.setTextColor(context.getResources().getColor(R.color.white));
+        }
+
+        if (message.isLoading()) {
+            holder.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            holder.progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -52,11 +59,15 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         TextView textViewMessage;
         CardView cardView;
 
+        ProgressBar progressBar;
+
+
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewUsername = itemView.findViewById(R.id.text_chat_user);
             textViewMessage = itemView.findViewById(R.id.text_chat_message);
             cardView = itemView.findViewById(R.id.card_chat_message);
+            progressBar = itemView.findViewById(R.id.chat_progress_bar);
         }
     }
 }

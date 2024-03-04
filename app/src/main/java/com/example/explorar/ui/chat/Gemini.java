@@ -19,6 +19,10 @@ import java.util.concurrent.Executor;
 public class Gemini {
 
     public void getResponse(String query, ResponseCallback callback, List<Message> messageList){
+        if (!messageList.isEmpty()) {
+            Message lastMessage = messageList.get(messageList.size() - 1);
+            lastMessage.setLoading(true);
+        }
         GenerativeModelFutures model = getModel();
 
         StringBuilder fullQuery = new StringBuilder(query);
@@ -29,18 +33,27 @@ public class Gemini {
         Executor executor = Runnable::run;
 
         ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
+
         Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
 
             @Override
             public void onSuccess(GenerateContentResponse result){
                 String resultText = result.getText();
                 callback.onResponse(resultText);
+                if (!messageList.isEmpty()) {
+                    Message lastMessage = messageList.get(messageList.size() - 1);
+                    lastMessage.setLoading(false);
+                }
             }
 
             @Override
             public void onFailure(Throwable throwable){
                 throwable.printStackTrace();
                 callback.onError(throwable);
+                if (!messageList.isEmpty()) {
+                    Message lastMessage = messageList.get(messageList.size() - 1);
+                    lastMessage.setLoading(false);
+                }
             }
         }, executor);
     }
