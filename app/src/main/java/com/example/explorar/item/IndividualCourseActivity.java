@@ -48,8 +48,16 @@ public class IndividualCourseActivity extends AppCompatActivity {
         items.sort(Comparator.comparing(Item::getIndex));
 
         ArrayList<String> myCourses = userData.getCourses();
+        List<Map<String, Object>> completed = userData.getCompleted();
+        ArrayList<Boolean> courseCompletion;
+        int pos = 0;
+        for (int j=0; j<completed.size(); j++) {
+            if (completed.get(j).containsKey(course.getDocId())) {
+                pos = j;
+            }
+        }
         if (myCourses.contains(course.getDocId())) {
-            ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(course.getDocId());
+            courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(pos).get(course.getDocId());
             for (int i = 0; i< items.size(); i++) {
                 Item item = items.get(i);
                 item.setStatus(courseCompletion.get(i));

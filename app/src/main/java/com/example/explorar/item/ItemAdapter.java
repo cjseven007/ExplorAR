@@ -101,9 +101,16 @@ public class ItemAdapter extends ArrayAdapter<Item> {
     private void updateStatus(Item item, boolean newStatus){
         String courseId = course.getDocId();
         List<Map<String, Object>> completed = userData.getCompleted();
-        ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(courseId);
+        ArrayList<Boolean> courseCompletion;
+        int pos = 0;
+        for (int j=0; j<completed.size(); j++) {
+            if (completed.get(j).containsKey(course.getDocId())) {
+                pos = j;
+            }
+        }
+        courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(pos).get(courseId);
         courseCompletion.set(item.getIndex(), newStatus);
-        completed.get(0).replace(courseId, courseCompletion);
+        completed.get(pos).replace(courseId, courseCompletion);
 
         userData.setCompleted(completed);
         FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
