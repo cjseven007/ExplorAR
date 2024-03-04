@@ -25,13 +25,19 @@
         android:theme="@style/Theme.ExplorAR"
         tools:targetApi="31">
         <activity
-            android:name=".video.VideoActivity"
+            android:name=".ui.chat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".reading.ReadingActivity"
+            android:name=".ui.reconnect.ReconnectActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.courses.ViewCoursesActivity"
+            android:name=".ui.video.VideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reading.ReadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".item.IndividualCourseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"
@@ -40,7 +46,7 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ar.ARActivity"
+            android:name=".ui.ar.ARActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

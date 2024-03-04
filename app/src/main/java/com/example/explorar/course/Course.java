@@ -1,32 +1,16 @@
-package com.example.explorar.ui.courses;
+package com.example.explorar.course;
+
+import com.example.explorar.CommonData;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Courses implements Serializable {
-    String title;
-    String content;
+public class Course extends CommonData implements Serializable {
     String docId;
     List<Map<String, Object>> ar;
     List<Map<String, Object>> reading;
     List<Map<String, Object>> videos;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public String getDocId() {
         return docId;

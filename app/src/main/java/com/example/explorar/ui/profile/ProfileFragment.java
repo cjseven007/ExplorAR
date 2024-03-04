@@ -1,4 +1,4 @@
-package com.example.explorar.ui.notifications;
+package com.example.explorar.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,28 +10,27 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.explorar.databinding.FragmentNotificationsBinding;
+import com.example.explorar.GlobalVariables;
+import com.example.explorar.R;
+import com.example.explorar.databinding.FragmentProfileBinding;
 import com.example.explorar.ui.login.LoginActivity;
+import com.example.explorar.user.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class NotificationsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-private FragmentNotificationsBinding binding;
+private FragmentProfileBinding binding;
     private TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        TextView textView = root.findViewById(R.id.text_notifications);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +45,7 @@ private FragmentNotificationsBinding binding;
                                     Toast.LENGTH_LONG)
                             .show();
                 } else {
+                    GlobalVariables.setUserData(new UserData());
                     Toast.makeText(getContext(),
                                     "Logout successful",
                                     Toast.LENGTH_LONG)

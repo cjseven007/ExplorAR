@@ -1,4 +1,4 @@
-package com.example.explorar.ui.courses;
+package com.example.explorar.item;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,32 +6,34 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.R;
-import com.example.explorar.ui.user.UserData;
+import com.example.explorar.course.Course;
+import com.example.explorar.user.UserData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class ViewCoursesActivity extends AppCompatActivity {
-    private Courses course;
+public class IndividualCourseActivity extends AppCompatActivity {
+    private Course course;
     private UserData userData;
     private TextView titleTextView;
     private ListView listView;
-    private CourseItemAdapter courseItemAdapter;
-    private ArrayList<CourseItem> courseItems = new ArrayList<>();
+    private ItemAdapter itemAdapter;
+    private ArrayList<Item> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_courses);
+        setContentView(R.layout.activity_individual_course);
 
-        course = (Courses) getIntent().getSerializableExtra("course");
-        userData = (UserData) getIntent().getSerializableExtra("userData");
+        course = (Course) getIntent().getSerializableExtra("course");
+        userData = GlobalVariables.getUserData();
 
         titleTextView = findViewById(R.id.title_text_view);
-        titleTextView.setText(course.title);
+        titleTextView.setText(course.getTitle());
 
         listView = findViewById(R.id.list_view);
 
@@ -43,21 +45,21 @@ public class ViewCoursesActivity extends AppCompatActivity {
         addCourseItems(videos);
         addCourseItems(ar);
 
-        ArrayList<String> myCourses = userData.getMyCourses();
-        if (myCourses.contains(course.docId)) {
+        items.sort(Comparator.comparing(Item::getIndex));
+
+        ArrayList<String> myCourses = userData.getCourses();
+        if (myCourses.contains(course.getDocId())) {
             ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) userData.getCompleted().get(0).get(course.getDocId());
-            for (int i=0; i<courseItems.size(); i++) {
-                CourseItem courseItem = courseItems.get(i);
-                courseItem.setStatus(courseCompletion.get(i));
-                courseItems.set(i, courseItem);
+            for (int i = 0; i< items.size(); i++) {
+                Item item = items.get(i);
+                item.setStatus(courseCompletion.get(i));
+                items.set(i, item);
             }
         }
 
-        courseItems.sort(Comparator.comparing(CourseItem::getIndex));
+        itemAdapter = new ItemAdapter(IndividualCourseActivity.this, items, course);
 
-        courseItemAdapter = new CourseItemAdapter(ViewCoursesActivity.this, courseItems, course);
-
-        listView.setAdapter(courseItemAdapter);
+        listView.setAdapter(itemAdapter);
     }
 
     private void addCourseItems(List<Map<String, Object>> mapList) {
@@ -67,13 +69,13 @@ public class ViewCoursesActivity extends AppCompatActivity {
             String type = stringObjectMap.get("type").toString();
             int index = Integer.valueOf(stringObjectMap.get("index").toString());
 
-            CourseItem courseItem = new CourseItem();
-            courseItem.setTitle(title);
-            courseItem.setContent(content);
-            courseItem.setType(type);
-            courseItem.setIndex(index);
+            Item item = new Item();
+            item.setTitle(title);
+            item.setContent(content);
+            item.setType(type);
+            item.setIndex(index);
 
-            courseItems.add(courseItem);
+            items.add(item);
         });
     }
 }

@@ -31,6 +31,22 @@
         android:indeterminateBehavior="repeat"
         android:visibility="gone" />
 
+    <EditText
+        android:id="@+id/name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/student_id_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Student ID"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
     <!-- Edit text for email -->
     <EditText
         android:id="@+id/email_edit_text"
