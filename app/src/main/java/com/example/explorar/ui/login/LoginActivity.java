@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +14,23 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.MainActivity;
 import com.example.explorar.R;
+import com.example.explorar.ui.reconnect.ReconnectActivity;
 import com.example.explorar.ui.register.RegisterActivity;
+import com.example.explorar.ui.splash.SplashActivity;
+import com.example.explorar.user.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
@@ -94,14 +105,30 @@ public class LoginActivity extends AppCompatActivity {
                             @NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful()) {
+                            String uid = firebaseAuth.getCurrentUser().getUid();
+                            FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        UserData userData = new UserData();
+                                        userData.setName((String) task.getResult().get("name"));
+                                        userData.setStudentId((String) task.getResult().get("studentId"));
+                                        userData.setUserId((String) task.getResult().get("userId"));
+                                        userData.setCourses((ArrayList<String>) task.getResult().get("courses"));
+                                        userData.setCompleted((List<Map<String, Object>>) task.getResult().get("completed"));
+
+                                        GlobalVariables.setUserData(userData);
+
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            });
                             Toast.makeText(getApplicationContext(),
                                             "Login successful!!",
                                             Toast.LENGTH_LONG)
                                     .show();
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
                         }
 
                         else {

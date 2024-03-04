@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class UserData implements Serializable {
+    String name;
+    String studentId;
     String userId;
     ArrayList<String> courses;
     List<Map<String, Object>> completed;
@@ -16,6 +18,22 @@ public class UserData implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public ArrayList<String> getCourses() {

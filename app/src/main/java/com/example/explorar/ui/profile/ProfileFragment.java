@@ -11,9 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentProfileBinding;
 import com.example.explorar.ui.login.LoginActivity;
+import com.example.explorar.user.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -43,6 +45,7 @@ private FragmentProfileBinding binding;
                                     Toast.LENGTH_LONG)
                             .show();
                 } else {
+                    GlobalVariables.setUserData(new UserData());
                     Toast.makeText(getContext(),
                                     "Logout successful",
                                     Toast.LENGTH_LONG)

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,7 +34,14 @@ private FragmentHomeBinding binding;
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Query query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), GlobalVariables.getUserData().getCourses());
+        Query query;
+        if (GlobalVariables.getUserData().getCourses().isEmpty()) {
+            TextView textView = root.findViewById(R.id.empty_text_view);
+            textView.setVisibility(View.VISIBLE);
+            query = FirebaseFirestore.getInstance().collection("placeholder");
+        } else {
+            query = FirebaseFirestore.getInstance().collection("courses").whereIn(documentId(), GlobalVariables.getUserData().getCourses());
+        }
         recyclerView = root.findViewById(R.id.recycler_view);
         FirestoreRecyclerOptions<Course> options = new FirestoreRecyclerOptions.Builder<Course>().setQuery(query, Course.class).build();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
