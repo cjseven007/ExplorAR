@@ -48,27 +48,8 @@ private FragmentHomeBinding binding;
         courseAdapter = new CourseAdapter(options, getContext());
         recyclerView.setAdapter(courseAdapter);
         courseAdapter.startListening();
-        courseAdapter.notifyDataSetChanged();
 
         return root;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        courseAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        courseAdapter.stopListening();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        courseAdapter.notifyDataSetChanged();
     }
 }
 
