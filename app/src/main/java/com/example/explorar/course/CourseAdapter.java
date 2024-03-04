@@ -59,7 +59,15 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             int totalCompleted = 0;
             float percentage = 0.0f;
 
-            ArrayList<Boolean> courseCompletion = (ArrayList<Boolean>) completed.get(0).get(course.docId);
+            ArrayList<Boolean> courseCompletion;
+            int pos = 0;
+            for (int j=0; j<completed.size(); j++) {
+                if (completed.get(j).containsKey(course.getDocId())) {
+                    pos = j;
+                }
+            }
+
+            courseCompletion = (ArrayList<Boolean>) completed.get(pos).get(course.docId);
             for (int i=0; i<courseCompletion.size(); i++) {
                 if (courseCompletion.get(i)) {
                     totalCompleted++;
