@@ -1,6 +1,6 @@
-package com.example.explorar.ui.courses;
+package com.example.explorar.item;
 
-public class CourseItem {
+public class Item {
     String title;
     String content;
     String type;

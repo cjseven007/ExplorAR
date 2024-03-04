@@ -1,4 +1,4 @@
-package com.example.explorar.reading;
+package com.example.explorar.ui.reading;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,10 +1,10 @@
-package com.example.explorar.ui.courses;
+package com.example.explorar.course;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Courses implements Serializable {
+public class Course implements Serializable {
     String title;
     String content;
     String docId;

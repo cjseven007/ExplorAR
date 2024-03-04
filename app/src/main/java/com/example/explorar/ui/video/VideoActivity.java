@@ -1,4 +1,4 @@
-package com.example.explorar.video;
+package com.example.explorar.ui.video;
 
 import androidx.appcompat.app.AppCompatActivity;
 
