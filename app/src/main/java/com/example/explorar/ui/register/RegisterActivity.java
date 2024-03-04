@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.MainActivity;
 import com.example.explorar.R;
 import com.example.explorar.ui.login.LoginActivity;
@@ -24,9 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText studentIdEditText, nameEditText, emailEditText, passwordEditText;
@@ -125,6 +123,8 @@ public class RegisterActivity extends AppCompatActivity {
                         userData.setUserId(uid);
                         userData.setCompleted(new ArrayList<>());
                         userData.setCourses(new ArrayList<>());
+
+                        GlobalVariables.setUserData(userData);
 
                         FirebaseFirestore.getInstance().collection("users").document(uid).set(userData);
                         Toast.makeText(getApplicationContext(),

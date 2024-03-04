@@ -1,28 +1,12 @@
 package com.example.explorar.item;
 
-public class Item {
-    String title;
-    String content;
+import com.example.explorar.CommonData;
+
+public class Item extends CommonData {
     String type;
     int index;
     float lowerBound;
     boolean status;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public String getType() {
         return type;

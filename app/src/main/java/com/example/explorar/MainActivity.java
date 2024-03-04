@@ -16,7 +16,6 @@ import com.example.explorar.ui.chat.ChatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
