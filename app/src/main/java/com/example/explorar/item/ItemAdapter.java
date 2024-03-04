@@ -90,13 +90,10 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             }
         });
 
-        statusCheckBox.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                item.status = statusCheckBox.isChecked();
+        statusCheckBox.setOnClickListener(view -> {
+            item.status = statusCheckBox.isChecked();
 
-                updateStatus(item, item.status);
-            }
+            updateStatus(item, item.status);
         });
 
         return convertView;

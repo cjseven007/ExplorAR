@@ -20,8 +20,12 @@ import com.example.explorar.item.IndividualCourseActivity;
 import com.example.explorar.user.UserData;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +76,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             holder.progressBar.setProgress(Math.round(percentage*100.0f));
             holder.percentageTextView.setText(Math.round(percentage*100.0f) +"%");
             holder.registerButtonLinearLayout.setVisibility(View.GONE);
+
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(context, IndividualCourseActivity.class);
                 intent.putExtra("course", course);
@@ -82,6 +87,15 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             holder.titleTextView.setText(course.title);
             holder.contentTextView.setText(truncateAndAddEllipsis(course.content, 80));
             holder.progressBarLinearLayout.setVisibility(View.GONE);
+
+            holder.registerButton.setOnClickListener(view -> {
+                registerCourse(course);
+                holder.registerButtonLinearLayout.setVisibility(View.GONE);
+                holder.progressBarLinearLayout.setVisibility(View.VISIBLE);
+                holder.progressBar.setMax(100);
+                holder.progressBar.setProgress(0);
+                holder.percentageTextView.setText("0%");
+            });
         }
     }
 
@@ -96,7 +110,7 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
         LinearLayout progressBarLinearLayout, registerButtonLinearLayout;
         TextView titleTextView, contentTextView, percentageTextView;
         ProgressBar progressBar;
-        Button register_button;
+        Button registerButton;
 
         public CoursesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,7 +121,28 @@ public class CourseAdapter extends FirestoreRecyclerAdapter<Course, CourseAdapte
             contentTextView = itemView.findViewById(R.id.content_text_view);
             percentageTextView = itemView.findViewById(R.id.percentage_text_view);
             progressBar = itemView.findViewById(R.id.course_progress_bar);
-            register_button = itemView.findViewById(R.id.register_button);
+            registerButton = itemView.findViewById(R.id.register_button);
         }
+    }
+
+    private void registerCourse(Course course) {
+        ArrayList<String> courses = userData.getCourses();
+        List<Map<String, Object>> completed = userData.getCompleted();
+
+        int lengthArr = course.getReading().size() + course.getVideos().size() + course.getAr().size();
+        ArrayList<Boolean> courseCompletion = new ArrayList<>(lengthArr);
+        courseCompletion.addAll(Collections.nCopies(lengthArr, Boolean.FALSE));
+        Map<String, Object> courseCompletionMap = new HashMap<>();
+        courseCompletionMap.put(course.getDocId(), courseCompletion);
+
+        courses.add(course.getDocId());
+        completed.add(courseCompletionMap);
+
+        userData.setCourses(courses);
+        userData.setCompleted(completed);
+
+        GlobalVariables.setUserData(userData);
+
+        FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
     }
 }
