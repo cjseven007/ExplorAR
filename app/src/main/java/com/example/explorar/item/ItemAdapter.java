@@ -114,5 +114,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 
         userData.setCompleted(completed);
         FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
+
+        GlobalVariables.setDataChanged(true);
     }
 }

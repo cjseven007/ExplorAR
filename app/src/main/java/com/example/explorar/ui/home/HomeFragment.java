@@ -51,5 +51,14 @@ private FragmentHomeBinding binding;
 
         return root;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (GlobalVariables.isDataChanged()) {
+            GlobalVariables.setDataChanged(false);
+            courseAdapter.notifyDataSetChanged();
+        }
+    }
 }
 
