@@ -23,7 +23,6 @@ import java.lang.ref.WeakReference;
 public class ARActivity extends AppCompatActivity {
     private ArFragment arFragment;
     private ArSceneView arSceneView;
-
     private ModelRenderable modelRenderable;
     private Anchor centerAnchor;
     private String title;
@@ -101,7 +100,17 @@ public class ARActivity extends AppCompatActivity {
             case "oil_pump":
                 ref = R.raw.oil_pump;
                 break;
+            case "test_tube":
+                ref = R.raw.test_tube;
+                break;
+            case "conical_flask":
+                ref = R.raw.conical_flask;
+                break;
+            case "lab_setup":
+                ref = R.raw.lab_setup;
+                break;
         }
+
         ModelRenderable.builder()
                 .setSource(this, ref)
                 .build()
