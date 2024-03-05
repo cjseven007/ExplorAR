@@ -9,6 +9,7 @@ public class UserData implements Serializable {
     String name;
     String studentId;
     String userId;
+    String email;
     ArrayList<String> courses;
     List<Map<String, Object>> completed;
 
@@ -34,6 +35,14 @@ public class UserData implements Serializable {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public ArrayList<String> getCourses() {

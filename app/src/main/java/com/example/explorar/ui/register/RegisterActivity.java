@@ -121,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                         userData.setName(name);
                         userData.setStudentId(studentId);
                         userData.setUserId(uid);
+                        userData.setEmail(email);
                         userData.setCompleted(new ArrayList<>());
                         userData.setCourses(new ArrayList<>());
 

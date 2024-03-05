@@ -48,6 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                         userData.setName((String) task.getResult().get("name"));
                         userData.setStudentId((String) task.getResult().get("studentId"));
                         userData.setUserId((String) task.getResult().get("userId"));
+                        userData.setEmail((String) task.getResult().get("email"));
                         userData.setCourses((ArrayList<String>) task.getResult().get("courses"));
                         userData.setCompleted((List<Map<String, Object>>) task.getResult().get("completed"));
 
