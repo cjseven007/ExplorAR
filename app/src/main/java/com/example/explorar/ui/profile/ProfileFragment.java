@@ -6,6 +6,9 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,17 +22,18 @@ import com.example.explorar.ui.login.LoginActivity;
 import com.example.explorar.user.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
 
 private FragmentProfileBinding binding;
-    private TextView textView;
-    private TextView userNameTextView;
-    private TextView userIdTextView;
-
+    private TextView userNameTextView, userIdTextView, userEmailTextView;
+    private EditText userNameEditText;
+    private Button editSaveButton, logoutButton;
     private UserData userData;
+    private boolean editing = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -41,12 +45,40 @@ private FragmentProfileBinding binding;
 
         userNameTextView = root.findViewById(R.id.user_name);
         userIdTextView = root.findViewById(R.id.user_id);
+        userEmailTextView = root.findViewById(R.id.user_email);
+        userNameEditText = root.findViewById(R.id.edit_user_name);
 
         userNameTextView.setText(userData.getName());
         userIdTextView.setText(userData.getStudentId());
+        userEmailTextView.setText(userData.getEmail());
 
-        TextView textView = root.findViewById(R.id.logout_button);
-        textView.setOnClickListener(new View.OnClickListener() {
+        editSaveButton = root.findViewById(R.id.edit_save_button);
+        editSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editing) {
+                    userData.setName(userNameEditText.getText().toString());
+                    GlobalVariables.setUserData(userData);
+
+                    FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
+
+                    userNameTextView.setVisibility(View.VISIBLE);
+                    userNameEditText.setVisibility(View.GONE);
+
+                    userNameTextView.setText(userData.getName());
+
+                    editing = false;
+                } else {
+                    userNameTextView.setVisibility(View.GONE);
+                    userNameEditText.setVisibility(View.VISIBLE);
+
+                    editing = true;
+                }
+            }
+        });
+
+        logoutButton = root.findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth firebaseAuth;
