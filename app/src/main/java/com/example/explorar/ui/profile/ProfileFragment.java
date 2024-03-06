@@ -62,13 +62,15 @@ private FragmentProfileBinding binding;
 
                     FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
 
+                    editSaveButton.setText("EDIT");
+                    userNameTextView.setText(userData.getName());
                     userNameTextView.setVisibility(View.VISIBLE);
                     userNameEditText.setVisibility(View.GONE);
 
-                    userNameTextView.setText(userData.getName());
-
                     editing = false;
                 } else {
+                    editSaveButton.setText("SAVE");
+                    userNameEditText.setText(userData.getName());
                     userNameTextView.setVisibility(View.GONE);
                     userNameEditText.setVisibility(View.VISIBLE);
 

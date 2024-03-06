@@ -25,7 +25,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/circle"
         android:src="@drawable/default_profile_pic" />
 
