@@ -27,7 +27,6 @@ public class ARActivity extends AppCompatActivity {
     private Anchor centerAnchor;
     private String title;
     private String content;
-    private boolean status;
     private float lowerBound;
 
     @Override
@@ -37,7 +36,6 @@ public class ARActivity extends AppCompatActivity {
 
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
-        status = getIntent().getBooleanExtra("status", false);
         lowerBound = getIntent().getFloatExtra("lowerBound", 0.5f);
 
 

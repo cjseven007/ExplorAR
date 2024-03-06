@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ItemAdapter extends ArrayAdapter<Item> {
+public class ItemAdapter extends ArrayAdapter<Item> implements ItemCategory {
     Course course;
     UserData userData;
     public ItemAdapter(@NonNull Context context, ArrayList<Item> items, Course course) {
@@ -69,23 +69,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                switch (item.type) {
-                    case "AR":
-                        intent = new Intent(getContext(), ARActivity.class);
-                        break;
-                    case "VIDEO":
-                        intent = new Intent(getContext(), VideoActivity.class);
-                        break;
-                    case "READING":
-                        intent = new Intent(getContext(), ReadingActivity.class);
-                        break;
-                }
-                intent.putExtra("title", item.getTitle());
-                intent.putExtra("content", item.getContent());
-                intent.putExtra("status", item.status);
-                intent.putExtra("lowerBound", item.lowerBound);
-                getContext().startActivity(intent);
+                getContext().startActivity(getIntent(item));
             }
         });
 
@@ -116,5 +100,45 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData);
 
         GlobalVariables.setDataChanged(true);
+    }
+
+    @Override
+    public Intent getIntent(Item item) {
+        Intent intent = new Intent();
+        switch (item.type) {
+            case "AR":
+                return generateActivity(item.getTitle(), item.getContent(), item.getLowerBound());
+            case "VIDEO":
+                return generateActivity(item.getTitle(), item.getContent(), item.isStatus());
+            case "READING":
+                return generateActivity(item.getTitle(), item.getContent());
+        }
+        return intent;
+    }
+
+    @Override
+    public Intent generateActivity(String title, String content, float lowerBound) {
+        Intent intent = new Intent(getContext(), ARActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        intent.putExtra("lowerBound", lowerBound);
+        return intent;
+    }
+
+    @Override
+    public Intent generateActivity(String title, String content, boolean status) {
+        Intent intent = intent = new Intent(getContext(), VideoActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        intent.putExtra("status", status);
+        return intent;
+    }
+
+    @Override
+    public Intent generateActivity(String title, String content) {
+        Intent intent = new Intent(getContext(), ReadingActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        return intent;
     }
 }
