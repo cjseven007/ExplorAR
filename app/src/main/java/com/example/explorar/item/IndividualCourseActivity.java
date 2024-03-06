@@ -1,8 +1,10 @@
 package com.example.explorar.item;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -10,6 +12,8 @@ import com.example.explorar.GlobalVariables;
 import com.example.explorar.R;
 import com.example.explorar.course.Course;
 import com.example.explorar.user.UserData;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -21,6 +25,7 @@ public class IndividualCourseActivity extends AppCompatActivity {
     private UserData userData;
     private TextView titleTextView;
     private ListView listView;
+    private Button button;
     private ItemAdapter itemAdapter;
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -33,10 +38,17 @@ public class IndividualCourseActivity extends AppCompatActivity {
         userData = GlobalVariables.getUserData();
 
         titleTextView = findViewById(R.id.title_text_view);
-        titleTextView.setText(course.getTitle());
-
         listView = findViewById(R.id.list_view);
+        button = findViewById(R.id.unenroll_button);
 
+        titleTextView.setText(course.getTitle());
+        setUpListView();
+        button.setOnClickListener(view -> {
+            unenrollCourse();
+        });
+    }
+
+    private void setUpListView() {
         List<Map<String, Object>> reading = course.getReading();
         List<Map<String, Object>> videos = course.getVideos();
         List<Map<String, Object>> ar = course.getAr();
@@ -84,6 +96,28 @@ public class IndividualCourseActivity extends AppCompatActivity {
             item.setIndex(index);
 
             items.add(item);
+        });
+    }
+
+    private void unenrollCourse() {
+        ArrayList<String> courses = userData.getCourses();
+        List<Map<String, Object>> completed = userData.getCompleted();
+
+        int index = courses.indexOf(course.getDocId());
+        courses.remove(index);
+        completed.remove(index);
+
+        userData.setCourses(courses);
+        userData.setCompleted(completed);
+
+        FirebaseFirestore.getInstance().collection("users").document(userData.getUserId()).set(userData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                GlobalVariables.setUserData(userData);
+                GlobalVariables.setDataDeleted(true);
+                finish();
+            }
         });
     }
 }
