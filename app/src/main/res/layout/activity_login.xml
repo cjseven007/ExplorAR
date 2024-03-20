@@ -54,7 +54,8 @@
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Login"
+        android:paddingTop="6dp"/>
 
     <TextView
         android:id="@+id/register_text_view"

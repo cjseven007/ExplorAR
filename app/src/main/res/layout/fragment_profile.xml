@@ -17,7 +17,8 @@
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:paddingTop="6dp"/>
 
     <!-- Profile Picture Circle -->
     <ImageView

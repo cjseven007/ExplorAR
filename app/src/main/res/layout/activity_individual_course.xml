@@ -37,6 +37,7 @@
         android:text="     Unenroll     "
         android:textColor="@color/black"
         android:layout_gravity="center"
+        android:paddingTop="6dp"
         />
 
 </LinearLayout>
