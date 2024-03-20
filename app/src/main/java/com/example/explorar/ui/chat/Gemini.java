@@ -63,12 +63,14 @@ public class Gemini {
         String apiKey = "AIzaSyBxz_XQlwK1c4X4Od-f0tg2HQrpSHZoy2w";
 
 
+
         SafetySetting harrassmentSafety = new SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH);
 
         GenerationConfig.Builder configBuilder = new GenerationConfig.Builder();
         configBuilder.temperature = 0.9f;
         configBuilder.topK = 16;
         configBuilder.topP = 0.1f;
+        configBuilder.maxOutputTokens = 300;
         GenerationConfig generationConfig = configBuilder.build();
 
         GenerativeModel gm = new GenerativeModel(
