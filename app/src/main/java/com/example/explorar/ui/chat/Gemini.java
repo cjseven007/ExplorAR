@@ -13,35 +13,55 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 public class Gemini {
 
-    public void getResponse(String query, ResponseCallback callback){
+    public void getResponse(String query, ResponseCallback callback, List<Message> messageList){
+        if (!messageList.isEmpty()) {
+            Message lastMessage = messageList.get(messageList.size() - 1);
+            lastMessage.setLoading(true);
+        }
         GenerativeModelFutures model = getModel();
 
-        Content content = new Content.Builder().addText(query).build();
+        StringBuilder fullQuery = new StringBuilder(query);
+        for (Message message : messageList) {
+            fullQuery.append(" ").append(message.message);
+        }
+        Content content = new Content.Builder().addText(fullQuery.toString()).build();
         Executor executor = Runnable::run;
 
         ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
+
         Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
 
             @Override
             public void onSuccess(GenerateContentResponse result){
                 String resultText = result.getText();
                 callback.onResponse(resultText);
+                if (!messageList.isEmpty()) {
+                    Message lastMessage = messageList.get(messageList.size() - 1);
+                    lastMessage.setLoading(false);
+                }
             }
 
             @Override
             public void onFailure(Throwable throwable){
                 throwable.printStackTrace();
                 callback.onError(throwable);
+                if (!messageList.isEmpty()) {
+                    Message lastMessage = messageList.get(messageList.size() - 1);
+                    lastMessage.setLoading(false);
+                }
             }
         }, executor);
     }
 
+
     private GenerativeModelFutures getModel(){
-        String apiKey = "AIzaSyB_WVBm5T_lHxqNnLoAmix84-3S8_ETsik";
+        String apiKey = "AIzaSyBxz_XQlwK1c4X4Od-f0tg2HQrpSHZoy2w";
+
 
         SafetySetting harrassmentSafety = new SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH);
 

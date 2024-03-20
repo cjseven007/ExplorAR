@@ -72,6 +72,9 @@ dependencies {
     // Required for streaming operations (to use `Publisher` from Guava Android)
     implementation("org.reactivestreams:reactive-streams:1.0.4")
 
+    // Volley library for OpenAI
+    implementation("com.android.volley:volley:1.2.1")
+
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'
@@ -96,3 +99,17 @@ sceneform.asset('sampledata/circuit_board_1/model.obj', // 'Source Asset Path' s
         'sampledata/circuit_board_1/model.sfa', // '.sfa Output Path' specified during import.
         'src/main/res/raw/circuit_board_1')      // '.sfb Output Path' specified during import.
 
+sceneform.asset('sampledata/test_tube/model.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/test_tube/model.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/test_tube')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/conical_flask/model.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/conical_flask/model.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/conical_flask')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/lab_setup/model.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/lab_setup/model.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/lab_setup')      // '.sfb Output Path' specified during import.

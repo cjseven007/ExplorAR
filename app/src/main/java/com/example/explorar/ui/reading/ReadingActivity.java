@@ -11,8 +11,7 @@ public class ReadingActivity extends AppCompatActivity {
 
     private String title;
     private String content;
-    private boolean status;
-    private float lowerBound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +19,6 @@ public class ReadingActivity extends AppCompatActivity {
 
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
-        status = getIntent().getBooleanExtra("status", false);
-        lowerBound = getIntent().getFloatExtra("lowerBound", 0.5f);
 
         TextView titleTextView = findViewById(R.id.title_text_view);
         TextView contentTextView = findViewById(R.id.content_text_view);

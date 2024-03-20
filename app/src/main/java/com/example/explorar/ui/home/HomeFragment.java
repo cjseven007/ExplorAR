@@ -3,6 +3,7 @@ package com.example.explorar.ui.home;
 import static com.google.firebase.firestore.FieldPath.documentId;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,19 @@ private FragmentHomeBinding binding;
 
     private CourseAdapter courseAdapter;
     private RecyclerView recyclerView;
+    private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
 
+        setUpRecyclerView();
+
+        return root;
+    }
+
+    private void setUpRecyclerView() {
         Query query;
         if (GlobalVariables.getUserData().getCourses().isEmpty()) {
             TextView textView = root.findViewById(R.id.empty_text_view);
@@ -48,8 +56,19 @@ private FragmentHomeBinding binding;
         courseAdapter = new CourseAdapter(options, getContext());
         recyclerView.setAdapter(courseAdapter);
         courseAdapter.startListening();
+    }
 
-        return root;
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (GlobalVariables.isDataChanged()) {
+            GlobalVariables.setDataChanged(false);
+            courseAdapter.notifyDataSetChanged();
+        }
+        if (GlobalVariables.isDataDeleted()) {
+            GlobalVariables.setDataDeleted(false);
+            setUpRecyclerView();
+        }
     }
 }
 

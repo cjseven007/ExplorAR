@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.explorar.GlobalVariables;
 import com.example.explorar.R;
 import com.example.explorar.databinding.FragmentSearchBinding;
 import com.example.explorar.course.Course;
@@ -39,5 +40,14 @@ private FragmentSearchBinding binding;
         courseAdapter.startListening();
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (GlobalVariables.isDataChanged()) {
+            GlobalVariables.setDataChanged(false);
+            courseAdapter.notifyDataSetChanged();
+        }
     }
 }

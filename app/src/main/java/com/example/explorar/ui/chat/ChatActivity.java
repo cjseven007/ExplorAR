@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.explorar.R;
@@ -48,6 +50,25 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String query) {
+//        OpenAI model = new OpenAI(ChatActivity.this);
+//
+//        model.getResponse(query, new ResponseCallback() {
+//            @Override
+//            public void onResponse(String response) {
+//                runOnUiThread(() -> {
+//                    addMessage("You", query);
+//                    addMessage("Gemini Buddy", response);
+//                    scrollToBottom();
+//                    showNoChatImage(); // Show Image when empty chat
+//                });
+//            }
+//
+//            @Override
+//            public void onError(Throwable throwable) {
+//                System.out.println(throwable.getMessage());
+//                runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show());
+//            }
+//        });
         Gemini model = new Gemini();
 
         model.getResponse(query, new ResponseCallback() {
@@ -57,14 +78,25 @@ public class ChatActivity extends AppCompatActivity {
                     addMessage("You", query);
                     addMessage("Gemini Buddy", response);
                     scrollToBottom();
+                    showNoChatImage(); // Show Image when empty chat
                 });
             }
 
             @Override
             public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
                 runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        });
+        }, messageList);
+    }
+
+    private void showNoChatImage() {
+        ImageView noChatImage = findViewById(R.id.no_chat_image);
+        if (messageList.isEmpty()) {
+            noChatImage.setVisibility(View.VISIBLE);
+        } else {
+            noChatImage.setVisibility(View.GONE);
+        }
     }
 
     private void addMessage(String username, String message) {
