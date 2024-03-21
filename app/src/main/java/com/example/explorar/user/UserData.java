@@ -13,6 +13,19 @@ public class UserData implements Serializable {
     ArrayList<String> courses;
     List<Map<String, Object>> completed;
 
+    public UserData() {
+        super();
+    }
+    public UserData(String name, String studentId, String userId, String email, ArrayList<String> courses, List<Map<String, Object>> completed) {
+        super();
+        this.name = name;
+        this.studentId = studentId;
+        this.userId = userId;
+        this.email = email;
+        this.courses = courses;
+        this.completed = completed;
+    }
+
     public String getUserId() {
         return userId;
     }

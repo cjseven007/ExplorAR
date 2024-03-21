@@ -44,13 +44,14 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
-                        UserData userData = new UserData();
-                        userData.setName((String) task.getResult().get("name"));
-                        userData.setStudentId((String) task.getResult().get("studentId"));
-                        userData.setUserId((String) task.getResult().get("userId"));
-                        userData.setEmail((String) task.getResult().get("email"));
-                        userData.setCourses((ArrayList<String>) task.getResult().get("courses"));
-                        userData.setCompleted((List<Map<String, Object>>) task.getResult().get("completed"));
+                        UserData userData = new UserData(
+                                (String) task.getResult().get("name"),
+                                (String) task.getResult().get("studentId"),
+                                (String) task.getResult().get("userId"),
+                                (String) task.getResult().get("email"),
+                                (ArrayList<String>) task.getResult().get("courses"),
+                                (List<Map<String, Object>>) task.getResult().get("completed")
+                        );
 
                         GlobalVariables.setUserData(userData);
 
