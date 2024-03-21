@@ -8,12 +8,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chat with Gemini AI"
+        android:text="Chat with Study Bot"
         android:gravity="center"
         android:id="@+id/chat_title"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+    <ImageView
+        android:id="@+id/no_chat_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/explorar_logo"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
         tools:ignore="MissingConstraints" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_chat"
@@ -62,7 +70,7 @@
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/colorPrimary"
-
+            android:paddingTop="6dp"
             android:text="Send"
             android:textColor="@color/white" />
     </RelativeLayout>

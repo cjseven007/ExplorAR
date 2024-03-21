@@ -13,5 +13,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+
     </style>
 </resources>
