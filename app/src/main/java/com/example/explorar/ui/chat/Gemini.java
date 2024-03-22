@@ -60,7 +60,8 @@ public class Gemini {
 
 
     private GenerativeModelFutures getModel(){
-        String apiKey = "AIzaSyB_WVBm5T_lHxqNnLoAmix84-3S8_ETsik";
+        String apiKey = "AIzaSyBxz_XQlwK1c4X4Od-f0tg2HQrpSHZoy2w";
+
 
 
         SafetySetting harrassmentSafety = new SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH);

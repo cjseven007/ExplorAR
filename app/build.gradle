@@ -72,6 +72,9 @@ dependencies {
     // Required for streaming operations (to use `Publisher` from Guava Android)
     implementation("org.reactivestreams:reactive-streams:1.0.4")
 
+    // Volley library for OpenAI
+    implementation("com.android.volley:volley:1.2.1")
+
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'
