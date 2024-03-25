@@ -7,81 +7,106 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".ui.login.RegisterActivity">
+    tools:context=".ui.login.RegisterActivity"
+    android:background="?attr/colorPrimaryDark">
 
-    <!-- TextView for heading -->
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:layout_marginTop="180dp"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:layout_marginBottom="20px"
-        android:text="Register" />
+        >
 
-    <!-- ProgressBar for Loading Time -->
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingHorizontal="20dp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="30dp">
 
-    <EditText
-        android:id="@+id/name_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:inputType="text"
-        android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/student_id_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Student ID"
-        android:inputType="text"
-        android:minHeight="48dp" />
+            <!-- TextView for heading -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-    <!-- Edit text for email -->
-    <EditText
-        android:id="@+id/email_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Email"
-        android:inputType="text"
-        android:minHeight="48dp" />
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="20px"
+                android:text="Register" />
 
-    <!-- Edit text for password -->
-    <EditText
-        android:id="@+id/password_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+            <!-- ProgressBar for Loading Time -->
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="20dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminate="true"
+                android:indeterminateBehavior="repeat"
+                android:visibility="gone" />
 
-    <!-- Button for register with text "Register" -->
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:paddingTop="6dp"/>
+            <EditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text"
+                android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/login_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20px"
-        android:layout_gravity="end"
-        android:text="Login to your account"
-        android:textColor="@color/teal_200"
-        android:textSize="15dp"
+            <EditText
+                android:id="@+id/student_id_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student ID"
+                android:inputType="text"
+                android:minHeight="48dp" />
 
-        />
+            <!-- Edit text for email -->
+            <EditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Email"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <!-- Edit text for password -->
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Password"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
+
+            <!-- Button for register with text "Register" -->
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:paddingTop="6dp"/>
+
+            <TextView
+                android:id="@+id/login_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:layout_gravity="end"
+                android:text="Login to your account"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="15dp"
+
+                />
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>
