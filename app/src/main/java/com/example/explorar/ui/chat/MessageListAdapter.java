@@ -42,11 +42,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             holder.textViewMessage.setTextColor(context.getResources().getColor(R.color.white));
         }
 
-        if (message.isLoading()) {
-            holder.progressBar.setVisibility(View.VISIBLE);
-        } else {
-            holder.progressBar.setVisibility(View.GONE);
-        }
+//        if (message.isLoading()) {
+//            holder.progressBar.setVisibility(View.VISIBLE);
+//        } else {
+//            holder.progressBar.setVisibility(View.GONE);
+//        }
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             textViewUsername = itemView.findViewById(R.id.text_chat_user);
             textViewMessage = itemView.findViewById(R.id.text_chat_message);
             cardView = itemView.findViewById(R.id.card_chat_message);
-            progressBar = itemView.findViewById(R.id.chat_progress_bar);
+//            progressBar = itemView.findViewById(R.id.chat_progress_bar);
         }
     }
 }

@@ -78,24 +78,22 @@ public class ChatActivity extends AppCompatActivity {
         Gemini model = new Gemini();
 
         JSONObject knowledgeBase = new JSONObject();
-        try {
-            // Add questions object
-            JSONObject questions = new JSONObject();
-            questions.put("who", "Who are you?");
-            questions.put("what", "What can you do?");
-            knowledgeBase.put("questions", questions);
+//        try {
+//            // Add questions object
+//            JSONObject questions = new JSONObject();
+//            questions.put("who", "Who are you?");
+//            questions.put("what", "What can you do?");
+//            knowledgeBase.put("questions", questions);
+//
+//            // Add responses object
+//            JSONObject responses = new JSONObject();
+//            responses.put("who", "I am Study Bot. I can assist you in your learning.");
+//            responses.put("what", "I can explain to you complex topics. The topics that I know are Arduino Fundamentals, Lab Fundamentals, and Oil & Gas Fundamentals.");
+//            knowledgeBase.put("responses", responses);
+//        }  catch (JSONException e) {
+//            throw new RuntimeException(e);
+//        }
 
-            // Add responses object
-            JSONObject responses = new JSONObject();
-            responses.put("who", "I am Study Bot. I can assist you in your learning.");
-            responses.put("what", "I can explain to you complex topics related to arduino, laboratories and oil and gas industry.");
-            knowledgeBase.put("responses", responses);
-        }  catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Print JSONObject
-        System.out.println(knowledgeBase);
 
         model.getResponse(query, new ResponseCallback() {
             @Override
