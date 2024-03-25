@@ -20,6 +20,9 @@ import com.example.explorar.databinding.FragmentHomeBinding;
 import com.example.explorar.course.Course;
 import com.example.explorar.course.CourseAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -33,8 +36,20 @@ private FragmentHomeBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
 
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         root = binding.getRoot();
+
+//        MaterialCardView cardView = root.findViewById(R.id.card);
+//
+//        ShapeAppearanceModel shapeAppearanceModel = cardView.getShapeAppearanceModel().toBuilder()
+//                .setTopLeftCorner(new CrazyCornerTreatment())
+//                .setBottomLeftCorner(CornerFamily.ROUNDED, 0f)
+//                .setBottomRightCorner(CornerFamily.ROUNDED, 0f)
+//                .build();
+//
+//        cardView.setShapeAppearanceModel(shapeAppearanceModel);
+
 
         setUpRecyclerView();
 

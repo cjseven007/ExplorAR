@@ -118,8 +118,9 @@ public class ARActivity extends AppCompatActivity {
                 });
     }
 
-    private void setUpPlane(){
+    private void setUpPlane(){  // setup plane for hit testing
         arFragment.setOnTapArPlaneListener(new BaseArFragment.OnTapArPlaneListener() {
+            // place anchor node at hit point
             @Override
             public void onTapPlane(HitResult hitResult, Plane plane, MotionEvent motionEvent) {
                 Anchor anchor = hitResult.createAnchor();

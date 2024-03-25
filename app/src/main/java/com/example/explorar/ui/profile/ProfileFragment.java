@@ -83,6 +83,7 @@ private FragmentProfileBinding binding;
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // sign out
                 FirebaseAuth firebaseAuth;
                 firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
