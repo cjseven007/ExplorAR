@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.explorar.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +77,26 @@ public class ChatActivity extends AppCompatActivity {
 //        });
         Gemini model = new Gemini();
 
+        JSONObject knowledgeBase = new JSONObject();
+        try {
+            // Add questions object
+            JSONObject questions = new JSONObject();
+            questions.put("who", "Who are you?");
+            questions.put("what", "What can you do?");
+            knowledgeBase.put("questions", questions);
+
+            // Add responses object
+            JSONObject responses = new JSONObject();
+            responses.put("who", "I am Study Bot. I can assist you in your learning.");
+            responses.put("what", "I can explain to you complex topics related to arduino, laboratories and oil and gas industry.");
+            knowledgeBase.put("responses", responses);
+        }  catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Print JSONObject
+        System.out.println(knowledgeBase);
+
         model.getResponse(query, new ResponseCallback() {
             @Override
             public void onResponse(String response) {
@@ -90,7 +113,7 @@ public class ChatActivity extends AppCompatActivity {
                 System.out.println(throwable.getMessage());
                 runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        }, messageList);
+        }, messageList, knowledgeBase);
     }
 
     private void showNoChatImage() {
