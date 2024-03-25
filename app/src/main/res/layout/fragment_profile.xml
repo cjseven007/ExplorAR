@@ -7,25 +7,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".ui.profile.ProfileFragment" >
+    tools:context=".ui.profile.ProfileFragment"
+    android:background="?attr/colorPrimaryDark"
+    android:padding="20dp">
 
-    <Button
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_save_button"
-        android:text="EDIT"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="end"/>
+        android:textSize="28sp"
+        android:text="My Profile"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:background="?android:attr/colorPrimaryDark"
+        android:textFontWeight="900"
+        android:textColor="@color/white"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
     <!-- Profile Picture Circle -->
     <ImageView
         android:id="@+id/image_profile"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle"
         android:src="@drawable/default_profile_pic" />
 
@@ -70,6 +87,19 @@
         android:text="User Email"
         android:textSize="20sp" />
 
+
+    <Button
+        android:id="@+id/edit_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="EDIT"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
     <!-- Logout Button -->
     <Button
         android:id="@+id/logout_button"
@@ -77,18 +107,20 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="20dp"
         android:gravity="center"
-        android:layout_marginTop="100dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:text="LOG OUT"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginBottom="60dp"/>
 
-    <TextView
-        android:id="@+id/byebye"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bye bye 🤫🧏"
-        android:textSize="10sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/byebye"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="bye bye 🤫🧏"-->
+<!--        android:textSize="10sp" />-->
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

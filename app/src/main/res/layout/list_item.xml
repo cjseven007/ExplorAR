@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="8dp"
     android:layout_marginHorizontal="4dp"
     android:id="@+id/list_item"
     android:background="@drawable/rounded_border"
     android:padding="12dp"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,6 +18,25 @@
         android:layout_marginRight="15dp"
         android:textSize="16sp"
         android:id="@+id/id_text_view"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+       app:cardBackgroundColor="#e6e6e6"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center"
+        app:contentPadding="8dp"
+        app:cardCornerRadius="10dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image_button"
+        android:background="@drawable/ic_dashboard_black_24dp"
+        />
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:layout_width="1dp"
@@ -46,16 +65,11 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_button"
-        android:background="@drawable/ic_dashboard_black_24dp"
-        android:layout_gravity="center"
-        />
+
     <CheckBox
         android:id="@+id/completed_check_box"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
