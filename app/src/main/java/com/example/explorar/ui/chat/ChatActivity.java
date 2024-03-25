@@ -47,6 +47,9 @@ public class ChatActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show();
             }
         });
+
+        String initialMessage = "Hi, I am Study Bot!\nYour dedicated AI chat bot to answer your questions regarding your studies.";
+        addMessage("Gemini Buddy", initialMessage);
     }
 
     private void sendMessage(String query) {
