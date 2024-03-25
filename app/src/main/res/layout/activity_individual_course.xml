@@ -29,6 +29,8 @@
             android:gravity="center"/>
     </com.google.android.material.card.MaterialCardView>
 
+
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,6 +43,7 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"/>
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,3 +55,6 @@
         android:layout_gravity="center"/>
 
 </LinearLayout>
+
+
+

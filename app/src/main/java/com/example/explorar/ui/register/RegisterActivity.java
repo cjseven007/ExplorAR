@@ -109,21 +109,14 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // create new user
-        firebaseAuth
-            .createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
                     if (task.isSuccessful()) {
                         String uid = task.getResult().getUser().getUid();
-                        UserData userData = new UserData();
-                        userData.setName(name);
-                        userData.setStudentId(studentId);
-                        userData.setUserId(uid);
-                        userData.setEmail(email);
-                        userData.setCompleted(new ArrayList<>());
-                        userData.setCourses(new ArrayList<>());
+                        UserData userData = new UserData(name, studentId, uid, email, new ArrayList<>(), new ArrayList<>());
 
                         GlobalVariables.setUserData(userData);
 

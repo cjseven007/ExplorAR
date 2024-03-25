@@ -93,6 +93,7 @@
             android:id="@+id/register_button"
             android:text="Register"
             android:textColor="@color/black"
+            android:paddingTop="6dp"
             />
 
     </LinearLayout>
