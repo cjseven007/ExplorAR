@@ -4,28 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.reading.ReadingActivity">
+    android:layout_height="match_parent"
+    tools:context=".ui.reading.ReadingActivity"
+    android:background="?attr/colorPrimaryDark">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/title_text_view"
         android:text="title"
         android:textSize="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="20dp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        >
+        <TextView
+            android:layout_below="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/content_text_view"
+            android:layout_marginHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:text="content"
+            android:textSize="16dp"
+            android:justificationMode="inter_word"
+            android:visibility="visible"
+            />
 
-    <TextView
-        android:layout_below="@+id/title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/content_text_view"
-        android:layout_margin="8dp"
-        android:text="content"
-        android:textSize="16dp"
-        android:visibility="visible"
-        />
+    </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>
