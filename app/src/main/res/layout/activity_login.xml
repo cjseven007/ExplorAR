@@ -7,64 +7,90 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity"
+    android:background="?attr/colorPrimaryDark">
 
-    <!-- TextView for heading -->
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:layout_marginTop="180dp"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:layout_marginBottom="20px"
-        android:text="Login"/>
+       >
 
-    <!-- ProgressBar for Loading Time -->
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingHorizontal="20dp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="30dp">
 
-    <!-- Edit text for email -->
-    <EditText
-        android:id="@+id/email_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Email"
-        android:minHeight="48dp"
-        android:inputType="text" />
+            <!-- TextView for heading -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="20px"
+                android:text="Login"/>
 
-    <!-- Edit text for password -->
-    <EditText
-        android:id="@+id/password_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+            <!-- ProgressBar for Loading Time -->
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="20dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminate="true"
+                android:indeterminateBehavior="repeat"
+                android:visibility="gone" />
 
-    <!-- Button for Login with text "Login" -->
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:paddingTop="6dp"/>
+            <!-- Edit text for email -->
+            <EditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Email"
+                android:minHeight="48dp"
+                android:inputType="text" />
 
-    <TextView
-        android:id="@+id/register_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20px"
-        android:layout_gravity="end"
-        android:text="Create a new account"
-        android:textColor="@color/teal_200"
-        android:textSize="15dp"
-        />
+            <!-- Edit text for password -->
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Password"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
+
+            <!-- Button for Login with text "Login" -->
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:paddingTop="6dp"/>
+
+            <TextView
+                android:id="@+id/register_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:layout_gravity="end"
+                android:text="Create a new account"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="15dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

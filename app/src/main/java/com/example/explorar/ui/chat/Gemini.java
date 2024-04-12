@@ -12,13 +12,17 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
 
 public class Gemini {
 
-    public void getResponse(String query, ResponseCallback callback, List<Message> messageList){
+    public void getResponse(String query, ResponseCallback callback, List<Message> messageList, JSONObject knowledgeBase){
         if (!messageList.isEmpty()) {
             Message lastMessage = messageList.get(messageList.size() - 1);
             lastMessage.setLoading(true);
@@ -26,6 +30,8 @@ public class Gemini {
         GenerativeModelFutures model = getModel();
 
         StringBuilder fullQuery = new StringBuilder(query);
+        // Append knowledge base content
+        fullQuery.append(" ").append(convertJsonObjectToString(knowledgeBase));
         for (Message message : messageList) {
             fullQuery.append(" ").append(message.message);
         }
@@ -81,5 +87,28 @@ public class Gemini {
         );
 
         return GenerativeModelFutures.from(gm);
+    }
+
+    private String convertJsonObjectToString(JSONObject jsonObject) {
+        if (jsonObject == null)
+            return "";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{");
+        Iterator<String> keys = jsonObject.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            try {
+                stringBuilder.append("\"").append(key).append("\":\"").append(jsonObject.getString(key)).append("\",");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        // Remove the trailing comma if exists
+        if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+        stringBuilder.append("}");
+        return stringBuilder.toString();
     }
 }

@@ -3,6 +3,7 @@ package com.example.explorar.ui.ar;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,7 @@ import java.lang.ref.WeakReference;
 public class ARActivity extends AppCompatActivity {
     private ArFragment arFragment;
     private ArSceneView arSceneView;
+    private TextView objectTitleTextView;
     private ModelRenderable modelRenderable;
     private Anchor centerAnchor;
     private String title;
@@ -37,6 +39,8 @@ public class ARActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
         lowerBound = getIntent().getFloatExtra("lowerBound", 0.5f);
+        objectTitleTextView = findViewById(R.id.object_text_view);
+        objectTitleTextView.setText(title);
 
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);

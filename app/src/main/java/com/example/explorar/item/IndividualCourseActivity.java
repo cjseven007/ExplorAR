@@ -24,6 +24,7 @@ public class IndividualCourseActivity extends AppCompatActivity {
     private Course course;
     private UserData userData;
     private TextView titleTextView;
+    private  TextView descriptionTextView;
     private ListView listView;
     private Button button;
     private ItemAdapter itemAdapter;
@@ -38,10 +39,12 @@ public class IndividualCourseActivity extends AppCompatActivity {
         userData = GlobalVariables.getUserData();
 
         titleTextView = findViewById(R.id.title_text_view);
+        descriptionTextView = findViewById(R.id.description_text_view);
         listView = findViewById(R.id.list_view);
         button = findViewById(R.id.unenroll_button);
 
         titleTextView.setText(course.getTitle());
+        descriptionTextView.setText(course.getContent());
         setUpListView();
         button.setOnClickListener(view -> {
             unenrollCourse();
