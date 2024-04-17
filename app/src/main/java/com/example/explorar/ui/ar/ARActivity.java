@@ -90,6 +90,7 @@ public class ARActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);*/
     }
 
+    // add drop down to select model?
     private void setUpModel() {
         int ref = R.raw.andy;
         switch (content) {
@@ -110,6 +111,21 @@ public class ARActivity extends AppCompatActivity {
                 break;
             case "lab_setup":
                 ref = R.raw.lab_setup;
+                break;
+            case "egret":
+                ref = R.raw.egret;
+                break;
+            case "elephant":
+                ref = R.raw.elephant;
+                break;
+            case "kangaroo":
+                ref = R.raw.kangaroo;
+                break;
+            case "lion":
+                ref = R.raw.lion;
+                break;
+            case "orangutan":
+                ref = R.raw.orangutan;
                 break;
         }
 

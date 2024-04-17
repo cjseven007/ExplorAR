@@ -113,3 +113,28 @@ sceneform.asset('sampledata/lab_setup/model.obj', // 'Source Asset Path' specifi
         'default',                    // 'Material Path' specified during import.
         'sampledata/lab_setup/model.sfa', // '.sfa Output Path' specified during import.
         'src/main/res/raw/lab_setup')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/lion/Lion.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/lion/Lion.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/lion')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/elephant/Elephant.obj',
+        'default',
+        'sampledata/elephant/Elephant.sfa',
+        'src/main/res/raw/elephant')
+
+sceneform.asset('sampledata/orangutan/Orangutan.obj',
+        'default',
+        'sampledata/orangutan/Orangutan.sfa',
+        'src/main/res/raw/orangutan')
+
+sceneform.asset('sampledata/egret/GreatEgret.obj',
+        'default',
+        'sampledata/egret/GreatEgret.sfa',
+        'src/main/res/raw/egret')
+
+sceneform.asset('sampledata/kangaroo/Kangaroo_01.obj',
+        'default',
+        'sampledata/kangaroo/Kangaroo_01.sfa',
+        'src/main/res/raw/kangaroo')
