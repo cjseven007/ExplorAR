@@ -127,6 +127,30 @@ public class ARActivity extends AppCompatActivity {
             case "orangutan":
                 ref = R.raw.orangutan;
                 break;
+            case "lobster":
+                ref = R.raw.lobster;
+                break;
+            case "magikarp":
+                ref = R.raw.magikarp;
+                break;
+            case "eevee":
+                ref = R.raw.eevee;
+                break;
+            case "charmander":
+                ref = R.raw.charmander;
+                break;
+            case "pikachu":
+                ref = R.raw.pikachu;
+                break;
+            case "snorlax":
+                ref = R.raw.snorlax;
+                break;
+            case "sudowoodo":
+                ref = R.raw.sudowoodo;
+                break;
+            case "glurak":
+                ref = R.raw.glurak;
+                break;
         }
 
         ModelRenderable.builder()

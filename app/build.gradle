@@ -138,3 +138,43 @@ sceneform.asset('sampledata/kangaroo/Kangaroo_01.obj',
         'default',
         'sampledata/kangaroo/Kangaroo_01.sfa',
         'src/main/res/raw/kangaroo')
+
+sceneform.asset('sampledata/lobster/Lobster.obj',
+        'default',
+        'sampledata/lobster/Lobster.sfa',
+        'src/main/res/raw/lobster')
+
+sceneform.asset('sampledata/magikarp/model.obj',
+        'default',
+        'sampledata/magikarp/model.sfa',
+        'src/main/res/raw/magikarp')
+
+sceneform.asset('sampledata/eevee/model.obj',
+        'default',
+        'sampledata/eevee/model.sfa',
+        'src/main/res/raw/eevee')
+
+sceneform.asset('sampledata/charmander/model.obj',
+        'default',
+        'sampledata/charmander/model.sfa',
+        'src/main/res/raw/charmander')
+
+sceneform.asset('sampledata/pikachu/model.obj',
+        'default',
+        'sampledata/pikachu/model.sfa',
+        'src/main/res/raw/pikachu')
+
+sceneform.asset('sampledata/snorlax/model.obj',
+        'default',
+        'sampledata/snorlax/model.sfa',
+        'src/main/res/raw/snorlax')
+
+sceneform.asset('sampledata/sudowoodo/model.obj',
+        'default',
+        'sampledata/sudowoodo/model.sfa',
+        'src/main/res/raw/sudowoodo')
+
+sceneform.asset('sampledata/glurak/model.obj',
+        'default',
+        'sampledata/glurak/model.sfa',
+        'src/main/res/raw/glurak')
