@@ -113,3 +113,68 @@ sceneform.asset('sampledata/lab_setup/model.obj', // 'Source Asset Path' specifi
         'default',                    // 'Material Path' specified during import.
         'sampledata/lab_setup/model.sfa', // '.sfa Output Path' specified during import.
         'src/main/res/raw/lab_setup')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/lion/Lion.obj', // 'Source Asset Path' specified during import.
+        'default',                    // 'Material Path' specified during import.
+        'sampledata/lion/Lion.sfa', // '.sfa Output Path' specified during import.
+        'src/main/res/raw/lion')      // '.sfb Output Path' specified during import.
+
+sceneform.asset('sampledata/elephant/Elephant.obj',
+        'default',
+        'sampledata/elephant/Elephant.sfa',
+        'src/main/res/raw/elephant')
+
+sceneform.asset('sampledata/orangutan/Orangutan.obj',
+        'default',
+        'sampledata/orangutan/Orangutan.sfa',
+        'src/main/res/raw/orangutan')
+
+sceneform.asset('sampledata/egret/GreatEgret.obj',
+        'default',
+        'sampledata/egret/GreatEgret.sfa',
+        'src/main/res/raw/egret')
+
+sceneform.asset('sampledata/kangaroo/Kangaroo_01.obj',
+        'default',
+        'sampledata/kangaroo/Kangaroo_01.sfa',
+        'src/main/res/raw/kangaroo')
+
+sceneform.asset('sampledata/lobster/Lobster.obj',
+        'default',
+        'sampledata/lobster/Lobster.sfa',
+        'src/main/res/raw/lobster')
+
+sceneform.asset('sampledata/magikarp/model.obj',
+        'default',
+        'sampledata/magikarp/model.sfa',
+        'src/main/res/raw/magikarp')
+
+sceneform.asset('sampledata/eevee/model.obj',
+        'default',
+        'sampledata/eevee/model.sfa',
+        'src/main/res/raw/eevee')
+
+sceneform.asset('sampledata/charmander/model.obj',
+        'default',
+        'sampledata/charmander/model.sfa',
+        'src/main/res/raw/charmander')
+
+sceneform.asset('sampledata/pikachu/model.obj',
+        'default',
+        'sampledata/pikachu/model.sfa',
+        'src/main/res/raw/pikachu')
+
+sceneform.asset('sampledata/snorlax/model.obj',
+        'default',
+        'sampledata/snorlax/model.sfa',
+        'src/main/res/raw/snorlax')
+
+sceneform.asset('sampledata/sudowoodo/model.obj',
+        'default',
+        'sampledata/sudowoodo/model.sfa',
+        'src/main/res/raw/sudowoodo')
+
+sceneform.asset('sampledata/glurak/model.obj',
+        'default',
+        'sampledata/glurak/model.sfa',
+        'src/main/res/raw/glurak')

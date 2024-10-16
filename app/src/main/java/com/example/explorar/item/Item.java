@@ -9,7 +9,6 @@ public class Item {
     float lowerBound;
     boolean status;
 
-
     public String getTitle() {
         return title;
     }
