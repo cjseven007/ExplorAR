@@ -41,7 +41,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/egret\\GreatEgret_BaseColor.png',
+      file: 'sampledata/egret/GreatEgret_BaseColor.png',
       name: 'GreatEgret_BaseColor',
       pipeline_name: 'GreatEgret_BaseColor.png',
     },
