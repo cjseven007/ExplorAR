@@ -41,7 +41,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/lion\\Lion_BaseColor.png',
+      file: 'sampledata/lion/Lion_BaseColor.png',
       name: 'Lion_BaseColor',
       pipeline_name: 'Lion_BaseColor.png',
     },

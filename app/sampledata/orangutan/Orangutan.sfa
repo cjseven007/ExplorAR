@@ -40,7 +40,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/orangutan\\Material_Base_Color.001.png',
+      file: 'sampledata/orangutan/Material_Base_Color.001.png',
       name: 'Material_Base_Color.001',
       pipeline_name: 'Textures/Material_Base_Color.001.png',
     },

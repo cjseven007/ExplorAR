@@ -41,7 +41,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/elephant\\Elephant_BaseColor.png',
+      file: 'sampledata/elephant/Elephant_BaseColor.png',
       name: 'Elephant_BaseColor',
       pipeline_name: 'Elephant_BaseColor.png',
     },

@@ -41,7 +41,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/lobster\\Lobster_BaseColor.png',
+      file: 'sampledata/lobster/Lobster_BaseColor.png',
       name: 'Lobster_BaseColor',
       pipeline_name: 'Lobster_BaseColor.png',
     },
