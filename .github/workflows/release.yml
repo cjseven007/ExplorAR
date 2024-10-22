@@ -56,3 +56,11 @@ jobs:
               with:
                  name: release-artifacts
                  path: app/build/outputs/apk/release/app-release.apk
+
+            # Upload generated APK to the artifacts.
+            - name: Push to releases
+              uses: ncipollo/release-action@v1
+              with:
+                artifacts: "app/build/outputs/apk/release/*.apk"
+                tag: v1.0.${{ github.run_number }}
+                token: ${{ secrets.TOKEN }}
